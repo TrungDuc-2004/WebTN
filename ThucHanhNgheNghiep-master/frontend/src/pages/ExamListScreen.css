@@ -1,0 +1,122 @@
+.exam-list-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #eefaf1;
+  font-family: Arial, sans-serif;
+}
+
+.exam-list {
+  flex-grow: 1;
+  padding: 120px;
+}
+
+.exam-item {
+  background: white;
+  border-left: 3px solid #267c5a;
+  margin-bottom: 15px;
+  padding: 10px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 8px;
+  box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+}
+
+.exam-info p {
+  margin: 0;
+  color: #666;
+}
+
+.delete-button {
+  background-color: 	#F28B82;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.delete-button:hover {
+  background-color: 	#FF0000;
+}
+
+.create-button {
+  background-color: #267c5a;
+  color: white;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  float: right;
+  margin-top: 10px;
+}
+
+.Toastify__toast-container {
+  width: 100%;
+  max-width: 500px;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+}
+
+.Toastify__toast {
+  background-color: rgba(255, 255, 255, 0.95);
+  color: #2c3e50;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 16px 24px;
+}
+
+.Toastify__toast--success {
+  border-left: 4px solid #0ea978;
+}
+
+.Toastify__toast--error {
+  border-left: 4px solid #ff4d4f;
+}
+
+.Toastify__toast--info {
+  border-left: 4px solid #1890ff;
+}
+
+.Toastify__progress-bar {
+  background: linear-gradient(to right, #FED7B2, #FEE9D0);
+  height: 3px;
+}
+
+.Toastify__close-button {
+  color: #FED7B2;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.Toastify__close-button:hover {
+  opacity: 1;
+}
+
+.confirm-dialog-buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  gap: 10px;
+}
+
+.confirm-button {
+  padding: 5px 10px;
+  background: #0ea978;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.cancel-button {
+  padding: 5px 10px;
+  background: #ff4d4f;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}

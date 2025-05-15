@@ -1,0 +1,55 @@
+.navbarGV-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 50;
+  backdrop-filter: blur(6px);
+  background-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 1px 2px 0 #D9D9D9;
+}
+
+.navbarGV-content {
+  max-width: 80rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbarGV-logo {
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: #63AA75;
+}
+
+.navbarGV-buttons {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem; /* khoảng cách giữa icon user và logout */
+}
+
+.userGV-button,
+.login-button {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+}
+
+.userGV-icon {
+  width: 45px;
+  height: 45px;
+  cursor: pointer;
+}
+
+.logout-icon {
+  width: 32px; /* bé hơn user icon */
+  height: 32px;
+  cursor: pointer;
+}

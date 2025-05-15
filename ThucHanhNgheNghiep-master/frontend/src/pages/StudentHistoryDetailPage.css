@@ -1,0 +1,218 @@
+/* frontend/src/pages/StudentHistoryDetailPage.css */
+.history-detail-page-container {
+  font-family: 'Arial', sans-serif;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+  padding: 100px 20px 30px; 
+}
+.loading-message, .error-message {
+  text-align: center;
+  padding-top: 50px;
+  font-size: 1.1em;
+  color: #555;
+}
+.error-message a { color: #007bff; text-decoration: none; }
+.error-message a:hover { text-decoration: underline; }
+
+.history-detail-header {
+  text-align: left; 
+  margin-bottom: 25px;
+  padding: 15px 20px;
+  background-color: #ffffff; /* Nền trắng cho header */
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  border: 1px solid #e0e0e0;
+}
+.history-detail-header p {
+  font-size: 1em; 
+  color: #343a40; 
+  font-weight: 500;
+  margin: 6px 0; 
+}
+.history-detail-header p strong {
+  color: #0056b3; 
+  min-width: 140px; /* Điều chỉnh để label thẳng hàng */
+  display: inline-block;
+}
+
+/* Stats tổng quan */
+.history-summary-stats {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #e0e0e0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Cho phép nhiều cột hơn */
+  gap: 8px 15px; 
+  font-size: 0.95em; /* Tăng font một chút */
+}
+.history-summary-stats span {
+  color: #495057;
+  padding: 5px 0; /* Thêm padding cho dễ nhìn */
+}
+.history-summary-stats span strong {
+  /* color: #007bff; Bỏ màu mặc định, dùng màu riêng ở dưới */
+  margin-right: 5px;
+}
+.history-summary-stats .summary-correct {
+  color: #28a745; /* Xanh lá cho số câu đúng */
+  font-weight: bold;
+}
+.history-summary-stats .summary-incorrect {
+  color: #dc3545; /* Đỏ cho số câu sai */
+  font-weight: bold;
+}
+
+
+.history-questions-list {
+  max-width: 800px; 
+  margin: 0 auto;
+}
+
+.history-question-card {
+  background-color: #ffffff;
+  padding: 18px 22px; 
+  border-radius: 6px;
+  margin-bottom: 20px; 
+  box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+  border: 1px solid #d6d8db; 
+}
+/* Bỏ viền màu mè dựa trên trạng thái của cả câu hỏi,
+   chúng ta sẽ style trực tiếp các lựa chọn đáp án */
+.history-question-card.user-answered-correct,
+.history-question-card.user-answered-incorrect,
+.history-question-card.user-not-answered {
+  border-left: none; /* Bỏ viền trái cũ */
+}
+
+
+.history-question-title {
+  font-weight: 600; 
+  margin-bottom: 15px; 
+  font-size: 1.1em; 
+  color: #333; 
+  line-height: 1.45;
+}
+
+.history-answers-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px; 
+}
+
+.history-answer-option {
+  display: flex;
+  align-items: center;
+  gap: 10px; 
+  padding: 10px 12px; 
+  border-radius: 5px; /* Bo tròn hơn */
+  border: 1px solid #ced4da; 
+  font-size: 0.95em; 
+  position: relative; 
+  background-color: #f8f9fa; 
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+.history-option-letter {
+  font-weight: bold;
+  color: #0056b3; 
+  margin-right: 5px; 
+  min-width: 18px; 
+}
+.history-option-text {
+  flex: 1;
+  color: #343a40;
+  line-height: 1.4; 
+}
+
+/* Học sinh chọn và ĐÚNG */
+.history-answer-option.student-chose-correct {
+  background-color: #d4edda; /* Nền xanh lá nhạt */
+  border-color: #28a745;     /* Viền xanh lá */
+}
+.history-answer-option.student-chose-correct .history-option-text,
+.history-answer-option.student-chose-correct .history-option-letter {
+  color: #155724; /* Chữ xanh lá đậm */
+  font-weight: 500;
+}
+
+/* Học sinh chọn và SAI */
+.history-answer-option.student-chose-incorrect {
+  background-color: #f8d7da; /* Nền đỏ nhạt */
+  border-color: #dc3545;     /* Viền đỏ */
+}
+.history-answer-option.student-chose-incorrect .history-option-text,
+.history-answer-option.student-chose-incorrect .history-option-letter {
+  color: #721c24; /* Chữ đỏ đậm */
+  /* text-decoration: line-through; */ /* Tùy chọn gạch bỏ */
+}
+
+/* Đáp án đúng của HỆ THỐNG (khi học sinh không chọn đáp án này) */
+.history-answer-option.system-is-correct {
+  border: 2px solid #28a745; /* Viền xanh lá đậm nổi bật */
+  /* background-color: #e9f7ef; */ /* Nền xanh lá rất nhạt nếu muốn */
+}
+.history-answer-option.system-is-correct .history-option-text,
+.history-answer-option.system-is-correct .history-option-letter {
+   font-weight: bold; 
+   color: #198754; /* Chữ xanh lá đậm */
+}
+
+
+/* Chỉ báo Đúng (✔) / Sai (✘) */
+.answer-status-badge { 
+    margin-left: auto; 
+    font-size: 1em; 
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: white;
+    line-height: 1; 
+}
+.answer-status-badge.correct-badge { 
+    background-color: #28a745; 
+}
+.answer-status-badge.incorrect-badge { 
+    background-color: #dc3545; 
+}
+
+/* Feedback về đáp án đúng (chỉ hiển thị khi học sinh làm sai) */
+.system-correct-answer-feedback { /* Đổi tên class cho rõ hơn */
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px dashed #ced4da;
+    font-size: 0.9em; 
+    color: #28a745; /* Màu xanh lá cho feedback này */
+    font-weight: bold;
+}
+.not-answered-feedback { /* Feedback khi không trả lời */
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px dashed #ced4da;
+    font-style: italic;
+    color: #6c757d;
+    font-size: 0.9em;
+}
+.not-answered-feedback strong {
+    color: #198754; /* Đáp án đúng trong trường hợp không trả lời */
+}
+
+
+.back-to-history-list-btn {
+  display: block;
+  width: fit-content;
+  margin: 30px auto 20px;
+  padding: 10px 20px; 
+  background-color: #6c757d; 
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 0.95em;
+  font-weight: 500;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+  border: none; 
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+.back-to-history-list-btn:hover {
+  background-color: #546268; 
+  box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+}

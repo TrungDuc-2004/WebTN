@@ -1,0 +1,97 @@
+.start-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 400px; 
+  padding: 20px;
+}
+
+.quiz-title {
+  color: #FF9472;
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.quiz-code {
+  color: #666666;
+  font-size: 18px;
+  margin-bottom: 130px;
+}
+
+.start-btn {
+  padding: 14px 36px;
+  background-color: #FFD7B5; 
+  color: #5C4033; 
+  font-weight: 600;
+  border: none;
+  border-radius: 30px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 200px;
+}
+
+.start-btn:hover {
+  background-color: #FEC89A;
+  transform: scale(1.03);
+}
+
+.timer {
+  font-size: 15px;
+  color: #aaa;
+  font-style: italic;
+}
+
+/* Toast Notification Styles */
+.Toastify__toast-container {
+  width: 100%;
+  max-width: 500px;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+}
+
+.Toastify__toast {
+  background-color: rgba(255, 255, 255, 0.95);
+  color: #2c3e50;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 16px 24px;
+}
+
+.Toastify__toast--success {
+  border-left: 4px solid #0ea978;
+}
+
+.Toastify__toast--error {
+  border-left: 4px solid #ff4d4f;
+}
+
+.Toastify__toast--info {
+  border-left: 4px solid #1890ff;
+}
+
+.Toastify__progress-bar {
+  background: linear-gradient(to right, #FED7B2, #FEE9D0);
+  height: 3px;
+}
+
+.Toastify__close-button {
+  color: #FED7B2;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.Toastify__close-button:hover {
+  opacity: 1;
+}
