@@ -1,6 +1,5 @@
 import React from "react";
 import "./HomePage.css";
-import bgImage from "../assets/bg.png";
 import Navbar from "./Navbar";
 import ProcessSection from "./ProcessSection";
 import Footer from "./Footer";
@@ -10,13 +9,12 @@ const HomePage = () => {
   return (
     <>
       <Navbar />
-      <div className="homepage">
-        <img src={bgImage} alt="background" className="background-image" />
+      <div className="homepage-container">
         <main className="main-content">
-          <h1 className="main-title">ThinkFast</h1>
+          <h1 className="main-title">QuickQuiz</h1>
           <p className="main-description">
-            Tạo và cung cấp các nguồn tài nguyên giáo trình theo <br />
-            từng cấp độ đáp ứng nhu cầu của từng học sinh.
+            Hệ thống trắc nghiệm thông minh<br />
+            Nhanh chóng, chính xác, dễ dàng tạo và làm bài kiểm tra mọi lúc mọi nơi!
           </p>
           <Link to="/login" className="start-btn">
             Bắt đầu ngay
