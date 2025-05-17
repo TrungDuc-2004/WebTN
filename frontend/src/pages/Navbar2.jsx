@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import "./Navbar.css";                             
 import userIconDefault from "../assets/user.png";    
 import logoutIcon from "../assets/logout.png";      
-// import historyIcon from "../assets/history.png"; // << Bỏ comment nếu muốn dùng icon Lịch sử
 
 const Navbar = () => {
   const navigate = useNavigate(); 
@@ -26,7 +25,7 @@ const Navbar = () => {
     <div className="navbar-container"> 
       <div className="navbar-content">
         <Link to={user?.role === 'student' ? "/student-dashboard" : "/"} style={{ textDecoration: 'none' }}>
-          <h1 className="navbar-logo">ThinkFast</h1>
+          <h1 className="navbar-logo">QuickQuiz</h1>
         </Link>
         <div className="navbar-buttons">
           <Link to="/user" className="navbar-action-link user-profile-link" title="Thông tin cá nhân">

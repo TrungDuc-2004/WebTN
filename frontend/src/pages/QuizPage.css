@@ -148,11 +148,11 @@
 
 .next-btn {
   padding: 12px 35px;
-  background-color: #F8C471; /* Vàng cam */
-  color: #784212; /* Nâu đậm */
+  background-color: #F8C471; 
+  color: #784212; 
   font-weight: bold;
   border: none;
-  border-radius: 25px; /* Bo tròn nhiều hơn */
+  border-radius: 25px;
   font-size: 1.05rem;
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
   transition: all 0.2s ease;
@@ -165,13 +165,12 @@
 }
 
 .next-btn:disabled {
-  background-color: #FAD7A0; /* Màu nhạt hơn khi disabled */
-  color: #A0522D; /* Màu chữ cũng nhạt hơn */
+  background-color: #FAD7A0; 
+  color: #A0522D; 
   opacity: 0.7;
   cursor: not-allowed;
 }
 
-/* Các style cũ cho result-container, warning có thể giữ lại hoặc điều chỉnh */
 .result-container h2 {
   font-size: 36px;
   color: #333;

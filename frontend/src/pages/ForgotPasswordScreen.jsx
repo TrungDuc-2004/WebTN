@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./ForgotPasswordScreen.css";
-import bgImage from "../assets/bg.png";
+import bgImage from "../assets/bg.jpg";
 import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";

@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom"; 
 import "./RegisterPage.css";
-import bgImage from "../assets/bg.png";
+import bgImage from "../assets/bg.jpg";
 import Navbar1 from "./Navbar1";
 
 function RegisterPage() {

@@ -4,7 +4,7 @@ import "./FooterGV.css";
 const FooterGV = () => {
   return (
     <footer className="footerGV">
-      <p>© 2025 ThinkFast. All rights reserved.</p>
+      <p>© 2025 QuickQuiz. All rights reserved.</p>
     </footer>
   );
 };

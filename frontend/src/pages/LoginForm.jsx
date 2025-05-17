@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./LoginForm.css";
-import bgImage from "../assets/bg.png";
 import axios from "axios";
 
 const LoginForm = () => {
@@ -63,17 +62,14 @@ const LoginForm = () => {
   };
 
   return (
-    <div
-      className="login-wrapper"
-      style={{ backgroundImage: `url(${bgImage})` }}
-    >
-      <div className="login-container">
-        <h1 className="login-header">Đăng nhập</h1>
+    <div className="login-wrapper">
+      <div className="login-container1">
+        <h1 className="login-header">ĐĂNG NHẬP</h1>
 
         <div className="input-group">
           <input
             type="email"
-            placeholder="Nhập email"
+            placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
@@ -82,7 +78,7 @@ const LoginForm = () => {
         <div className="input-group">
           <input
             type="password"
-            placeholder="Nhập mật khẩu"
+            placeholder="Mật khẩu"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
@@ -93,26 +89,16 @@ const LoginForm = () => {
         </button>
 
         <div className="login-footer">
-          <p>
-            Bạn chưa có tài khoản? <Link to="/registerPage">Đăng ký ngay!</Link>
-          </p>
+          <span>Chưa có tài khoản? </span>
+          <Link to="/registerPage">Đăng ký ngay</Link>
         </div>
-        <Link to="/forgot-password" className="forgot-link">
+        
+        <Link to="/forgot-password" className="forgot-link1">
           Quên mật khẩu?
         </Link>
       </div>
 
-      <ToastContainer
-        position="top-center"
-        autoClose={2000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
+      <ToastContainer />
     </div>
   );
 };

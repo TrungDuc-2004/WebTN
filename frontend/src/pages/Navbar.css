@@ -11,7 +11,7 @@
 
 .navbar-content {
   max-width: 80rem;
-  margin: 0 auto; /* Sửa lại từ margin-left và margin-right */
+  margin: 0 auto;
   padding: 1rem 1.5rem;
   display: flex;
   justify-content: space-between;
@@ -22,25 +22,24 @@
   font-size: 1.7rem;
   font-weight: 700;
   color: #FEC2B2;
-  text-decoration: none; /* Thêm để bỏ gạch chân nếu Link bọc h1 */
+  text-decoration: none; 
 }
 
 .navbar-buttons {
   display: flex;
   align-items: center;
-  gap: 1rem; /* Giữ khoảng cách giữa các nút */
+  gap: 1rem; 
 }
 
-/* Nút login và register (khi chưa đăng nhập) */
 .login-button { 
   padding: 0.5rem 1rem;
   border-radius: 9999px;
   background-color: #FEC2B2;
-  color: black;
+  color: #022E40;
   font-weight: 600;
   transition: all 0.2s ease;
-  text-decoration: none; /* Cho thẻ Link */
-  border: none; /* Thường button trong Link không cần border */
+  text-decoration: none; 
+  border: none; 
 }
 
 .login-button:hover {
@@ -50,66 +49,56 @@
 .register-button {
   padding: 0.5rem 1rem;
   border-radius: 9999px;
-  border: 1px solid #FEC2B2;
-  color: black;
+  border: 3px solid #FEC2B2;
+  color: #022E40;
   font-weight: 600;
   transition: all 0.2s ease;
-  text-decoration: none; /* Cho thẻ Link */
+  text-decoration: none; 
 }
 
 .register-button:hover {
   background-color: #94A2F2;
 }
 
-/* Nút User (khi đã đăng nhập) - thẻ Link */
-.user-button { /* Đây là class của thẻ Link bao quanh img user */
-  display: flex; /* Để căn chỉnh img bên trong nếu có padding */
+.user-button { 
+  display: flex; 
   align-items: center;
-  padding: 2px; /* Padding nhỏ để tạo viền giả nếu icon tròn */
-  border-radius: 50%; /* Bo tròn cho nút chứa icon */
+  padding: 2px; 
+  border-radius: 50%; 
   transition: background-color 0.2s ease;
 }
 .user-button:hover {
-  background-color: rgba(0,0,0,0.05); /* Hiệu ứng hover nhẹ */
+  background-color: rgba(0,0,0,0.05); 
 }
 
-.user-icon { /* Class của thẻ img user */
-  width: 30px;  /* <<<< SỬA KÍCH THƯỚC Ở ĐÂY */
-  height: 30px; /* <<<< SỬA KÍCH THƯỚC Ở ĐÂY */
+.user-icon { 
+  width: 30px; 
+  height: 30px; 
   cursor: pointer;
   transition: transform 0.3s ease;
-  border-radius: 50%; /* Đảm bảo icon user (avatar) luôn tròn */
-  object-fit: cover; /* Quan trọng để avatar không bị méo */
-  display: block; /* Loại bỏ khoảng trống thừa dưới ảnh */
+  border-radius: 50%; 
+  object-fit: cover; 
+  display: block; 
 }
 
-/* Nút Logout (khi đã đăng nhập) - thẻ Link hoặc button */
-/* Nếu bạn dùng Link với class "login-button" cho logout như code JSX: */
-/* <Link to="/login" className="login-button" onClick={handleLogoutClick}>
-       <img src={logoutIcon} alt="Logout Icon" className="logout-icon" />
-     </Link>
-   Thì bạn cần đảm bảo .login-button được style cho phù hợp khi chứa icon,
-   và .logout-icon có kích thước.
-*/
 
-/* Hoặc nếu bạn đặt một class riêng cho Link logout, ví dụ: .navbar-logout-link */
-.navbar-logout-link { /* Class cho thẻ Link bao quanh img logout */
-  display: flex; /* Để căn chỉnh img bên trong nếu có padding */
+.navbar-logout-link { 
+  display: flex; 
   align-items: center;
-  padding: 5px; /* Padding cho dễ click */
-  border-radius: 4px; /* Bo góc nhẹ */
+  padding: 5px; 
+  border-radius: 4px; 
   transition: background-color 0.2s ease;
 }
 .navbar-logout-link:hover {
   background-color: rgba(0,0,0,0.05);
 }
 
-.logout-icon { /* Class của thẻ img logout */
-  width: 26px;  /* <<<< KÍCH THƯỚC CHO ICON LOGOUT */
-  height: 26px; /* <<<< KÍCH THƯỚC CHO ICON LOGOUT */
-  display: block; /* Loại bỏ khoảng trống thừa dưới ảnh */
+.logout-icon { 
+  width: 26px;  
+  height: 26px; 
+  display: block; 
   transition: transform 0.3s ease;
 }
-.navbar-logout-link:hover .logout-icon { /* Hiệu ứng cho icon khi hover Link cha */
+.navbar-logout-link:hover .logout-icon { 
     transform: scale(1.1);
 }

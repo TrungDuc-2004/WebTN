@@ -27,7 +27,7 @@ const NavbarGV = () => {
     <div className="navbarGV-container"> 
       <div className="navbarGV-content">
         <Link to={user?.role === 'teacher' ? "/teacher-dashboard" : "/"} style={{ textDecoration: 'none' }}>
-          <h1 className="navbarGV-logo">ThinkFast</h1>  
+          <h1 className="navbarGV-logo">QuickQuiz</h1>  
         </Link>
         <div className="navbarGV-buttons">
           <Link to="/userGV" className="navbarGV-action-link userGV-profile-link" title="Thông tin cá nhân">

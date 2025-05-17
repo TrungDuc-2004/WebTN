@@ -61,7 +61,8 @@
 }
 
 .start-btn:hover {
-  background: #80BF8A;
+  background: #FEC2B2;
+  color: #80BF8A;
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(2, 132, 199, 0.3);
 }

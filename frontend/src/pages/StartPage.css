@@ -28,8 +28,8 @@
 
 .start-btn {
   padding: 14px 36px;
-  background-color: #FFD7B5; 
-  color: #5C4033; 
+  background-color: #FEC2B2; 
+  color: #022E40; 
   font-weight: 600;
   border: none;
   border-radius: 30px;
@@ -38,11 +38,6 @@
   transition: all 0.3s ease;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   margin-bottom: 200px;
-}
-
-.start-btn:hover {
-  background-color: #FEC89A;
-  transform: scale(1.03);
 }
 
 .timer {

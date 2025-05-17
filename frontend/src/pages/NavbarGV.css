@@ -49,7 +49,7 @@
 }
 
 .logout-icon {
-  width: 32px; /* bé hơn user icon */
+  width: 32px; 
   height: 32px;
   cursor: pointer;
 }
