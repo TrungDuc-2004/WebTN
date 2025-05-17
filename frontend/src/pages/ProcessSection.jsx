@@ -1,6 +1,6 @@
 import React from "react";
 import "./ProcessSection.css";
-import mot from "../assets/mot.jpg";
+import mot from "../assets/mot.png";
 import hai from "../assets/hai.png";
 import ba from "../assets/ba.png";
 import bon from "../assets/bon.png";
@@ -11,7 +11,7 @@ const ProcessSection = () => {
   return (
     <section className="process-section">
       <div className="process-container">
-        <h2 className="process-title">Cách ThinkFast hoạt động</h2>
+        <h2 className="process-title">CÁCH QUICKQUIZ HOẠT ĐỘNG</h2>
 
         <div className="process-steps">
           <div className="process-step">

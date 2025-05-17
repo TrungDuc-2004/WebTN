@@ -4,7 +4,7 @@ import "./Footer.css";
 const Footer = () => {
   return (
     <footer className="footer">
-      <p>© 2025 ThinkFast. All rights reserved.</p>
+      <p>© 2025 QuickQuiz. All rights reserved.</p>
     </footer>
   );
 };

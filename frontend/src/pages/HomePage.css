@@ -46,7 +46,7 @@
 }
 
 .start-btn {
-  background: #0284c7; 
+  background: #80BF8A; 
   color: white;
   border: none;
   padding: 14px 36px;
@@ -55,18 +55,17 @@
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(2, 132, 199, 0.2);
+  box-shadow: 0 4px 15px rgba(34, 219, 90, 0.644);
   position: relative;
   top: 20px; 
 }
 
 .start-btn:hover {
-  background: #9CD3D9;
+  background: #80BF8A;
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(2, 132, 199, 0.3);
 }
 
-/* Hiệu ứng sóng nền tinh tế */
 .homepage-container::before {
   content: "";
   position: absolute;

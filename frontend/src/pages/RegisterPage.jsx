@@ -17,7 +17,7 @@ function RegisterPage() {
       <div className="homepage">
         <img src={bgImage} alt="background" className="background-image" />
         <div className="register-container">
-          <h2 className="title">Đăng kí</h2>
+          <h2 className="title">Đăng ký</h2>
           <div className="button-group">
             <button
               className="teacher-btn"

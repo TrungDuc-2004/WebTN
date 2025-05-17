@@ -12,7 +12,7 @@ const Navbar = () => {
             <button className="login-button">Đăng nhập</button>
           </Link>
           <Link to="/registerpage">
-            <button className="register-button">Đăng kí</button>
+            <button className="register-button">Đăng ký</button>
           </Link>
         </div>
       </div>

@@ -44,7 +44,7 @@
 }
 
 .login-button:hover {
-  background-color: #9CD3D9;
+  background-color: #80BF8A;
 }
 
 .register-button {
@@ -58,7 +58,7 @@
 }
 
 .register-button:hover {
-  background-color: #fef9c3;
+  background-color: #94A2F2;
 }
 
 /* Nút User (khi đã đăng nhập) - thẻ Link */
