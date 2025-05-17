@@ -44,7 +44,7 @@ const ForgotPasswordScreen = () => {
     <div className="forgot-password-container">
       <img src={bgImage} alt="background" className="background-image1" />
       <div className="form-box">
-        <h2>Đặt lại mật khẩu</h2>
+        <h2>ĐẶT LẠI MẬT KHẨU</h2>
         <p>Nhập email của bạn và mật khẩu mới.</p>
         <form onSubmit={handleSubmit}>
           <input

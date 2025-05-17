@@ -35,41 +35,45 @@
 
 .login-header {
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
   color: #022E40;
   font-size: 28px;
-  font-weight: 800;
+  font-weight: 900;
 }
 
-.input-group {
+.input-group1 {
   margin-bottom: 20px;
 }
 
-.input-group label {
+.input-group1 label {
   display: block;
   margin-bottom: 8px;
-  color: #5D736F;
-  font-size: 14px;
+  color: #022E40;
+  font-size: 15px;
   font-weight: 500;
 }
 
-.input-group input {
+.input-group1 input {
   width: 100%;
   padding: 14px 16px;
-  border: 1px solid #cbd5e1;
+  border: 0.5px solid #022E40;
   border-radius: 8px;
   font-size: 15px;
   background: white;
   transition: all 0.3s;
 }
 
-.input-group input:focus {
+.input-group1 input::placeholder {
+  color: #022E40; 
+}
+
+.input-group1 input:focus {
   outline: none;
   border-color: #80BF8A;
   box-shadow: 0 0 0 3px rgba(128, 191, 138, 0.2);
 }
 
-.login-btn {
+.login-btn1 {
   width: 100%;
   padding: 14px;
   background: #022E40;
@@ -93,8 +97,7 @@
 .login-footer {
   text-align: center;
   margin-top: 20px;
-  font-size: 14px;
-  color: #5D736F;
+  font-size: 15px;
 }
 
 .login-footer a {
@@ -109,12 +112,12 @@
   color: #80BF8A;
 }
 
-.forgot-link1 {
+.forgot-link {
   display: block;
   text-align: center;
   margin-top: 15px;
-  color: #5D736F;
-  font-size: 13px;
+  color: #022E40;
+  font-size: 15px;
   transition: all 0.2s;
 }
 

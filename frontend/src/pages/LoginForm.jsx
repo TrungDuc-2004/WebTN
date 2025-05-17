@@ -66,7 +66,7 @@ const LoginForm = () => {
       <div className="login-container1">
         <h1 className="login-header">ĐĂNG NHẬP</h1>
 
-        <div className="input-group">
+        <div className="input-group1">
           <input
             type="email"
             placeholder="Email"
@@ -75,7 +75,7 @@ const LoginForm = () => {
           />
         </div>
 
-        <div className="input-group">
+        <div className="input-group1">
           <input
             type="password"
             placeholder="Mật khẩu"
@@ -84,7 +84,7 @@ const LoginForm = () => {
           />
         </div>
 
-        <button className="login-btn" onClick={handleLogin}>
+        <button className="login-btn1" onClick={handleLogin}>
           Đăng nhập
         </button>
 
@@ -93,7 +93,7 @@ const LoginForm = () => {
           <Link to="/registerPage">Đăng ký ngay</Link>
         </div>
         
-        <Link to="/forgot-password" className="forgot-link1">
+        <Link to="/forgot-password" className="forgot-link">
           Quên mật khẩu?
         </Link>
       </div>
