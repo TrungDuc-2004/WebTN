@@ -1,7 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom"; 
 import "./RegisterPage.css";
-import bgImage from "../assets/bg.jpg";
 import Navbar1 from "./Navbar1";
 
 function RegisterPage() {
@@ -15,9 +14,8 @@ function RegisterPage() {
     <>
       <Navbar1 />
       <div className="homepage">
-        <img src={bgImage} alt="background" className="background-image" />
         <div className="register-container">
-          <h2 className="title">Đăng ký</h2>
+          <h2 className="title1">ĐĂNG KÝ</h2>
           <div className="button-group">
             <button
               className="teacher-btn"
