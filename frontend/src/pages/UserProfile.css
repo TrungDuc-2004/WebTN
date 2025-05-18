@@ -38,12 +38,12 @@
 .profile-basic-info h2 {
   font-size: 22px;
   margin: 0;
-  color: #2c3e50;
+  color: #022E40;
 }
 
 .profile-basic-info p {
   font-size: 14px;
-  color: #777;
+  color: #022E40;
 }
 
 .profile-body {
@@ -64,7 +64,7 @@
 
 .field-label {
   font-size: 15px;
-  color: #666;
+  color: #022E40;
   font-weight: bold;
   margin: 10px  
 }
@@ -72,7 +72,7 @@
 .field-value {
   font-size: 15px;
   color: #333;
-  background-color: #FEE9D0;
+  background-color: #FEC2B2;
   padding: 8px 10px;
   border-radius: 5px;            
   border: 1px solid #ddd;
@@ -92,7 +92,7 @@
 
 .profile-button {
   padding: 10px 20px;
-  background-color: #FED7B2;
+  background-color: #022E40;
   border: 1px solid #ddd;
   border-radius: 4px;
   cursor: pointer;

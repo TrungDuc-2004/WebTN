@@ -29,36 +29,41 @@
   font-size: 40px;
   font-weight: 600;
   color: #022E40; 
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 }
 
-.input-group1 {
+.input-group {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 20px; 
-  padding: 15px 20px; 
-  background: #022E40;
+  gap: 12px;
+  padding: 10px 15px;
+  background: #FED7B2;
   border-radius: 8px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
   transition: all 0.3s ease;
-  width: fit-content; 
-  margin: 0 auto; 
+}
+
+.input-group:hover {
+  background: #FED7B2;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
 }
 
 .code-input {
   padding: 12px 18px;
-  font-size: 16px;
+  font-size: 15px;
   border-radius: 8px;
   outline: none;
-  background-color: #FEC2B2 !important;
-  border: none;
+  background-color: #FEC2B2 !important; 
+  border: none; 
   color: #333;
   width: 250px;
   font-family: 'Poppins', sans-serif;
   box-shadow: none;
-  appearance: none;
+  appearance: none; 
 }
+
 
 .join-btn {
   font-family: 'Poppins', sans-serif;
@@ -67,10 +72,10 @@
   font-weight: bold;
   border: none;
   border-radius: 8px;
-  background-color: white;
+  background-color: #FFFCEF;
   color: #022E40;
   cursor: pointer;
-  white-space: nowrap;
+  white-space: nowrap; 
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
