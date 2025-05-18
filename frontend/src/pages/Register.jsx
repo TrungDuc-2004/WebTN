@@ -86,7 +86,7 @@ const Register = () => {
     >
       <div className="login-container">
         <h1 className="login-header">
-          Đăng ký {role === "teacher" ? "Giáo viên" : "Học sinh"}
+          ĐĂNG KÝ {role === "teacher" ? "GIÁO VIÊN" : "HỌC SINH"}
         </h1>
 
         <div className="input-group-r">
