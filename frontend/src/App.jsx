@@ -48,7 +48,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginForm />} />
         <Route path="/register/:role" element={<Register />} />
-        <Route path="/registerpage" element={<RegisterPage />} />
+        <Route path="/registerPage" element={<RegisterPage />} />
         <Route path="/forgot-password" element={<ForgotPasswordScreen />} />
 
         {/* Các trang cần đăng nhập (bọc bởi ProtectedRoute) */}

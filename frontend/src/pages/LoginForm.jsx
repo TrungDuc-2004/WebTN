@@ -63,8 +63,8 @@ const LoginForm = () => {
 
   return (
     <div className="login-wrapper">
-      <div className="login-container1">
-        <h1 className="login-header">ĐĂNG NHẬP</h1>
+      <div className="login-container-lg">
+        <h1 className="login-header-lg">ĐĂNG NHẬP</h1>
 
         <div className="input-group1">
           <input
@@ -88,7 +88,7 @@ const LoginForm = () => {
           Đăng nhập
         </button>
 
-        <div className="login-footer">
+        <div className="login-footer-lg">
           <span>Chưa có tài khoản? </span>
           <Link to="/registerPage">Đăng ký ngay</Link>
         </div>

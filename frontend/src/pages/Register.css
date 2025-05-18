@@ -12,8 +12,8 @@
  .login-container {
   width: 380px;
   padding: 35px;
-  background: #9CD3D9;
-  border-radius: 10px;
+  background: #94A2F2;
+  border-radius: 3px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 } 
 
@@ -26,11 +26,11 @@
   letter-spacing: 0.5px;
 }
 
-.input-group {
+.input-group-r {
   margin-bottom: 20px;
 }
 
-.input-group label {
+.input-group-r label {
   display: block;
   margin-bottom: 10px;
   color: rgba(255, 255, 255, 0.9);
@@ -38,7 +38,7 @@
   font-weight: 500;
 }
 
-.input-group input {
+.input-group-r input {
   width: 100%;
   padding: 15px 20px;
   border: 1px solid rgba(255, 255, 255, 0.3);
@@ -47,8 +47,12 @@
   background-color: rgba(255, 255, 255, 0.9);
   transition: all 0.3s ease;
 }
+.input-group-r input::placeholder {
+  color: #022E40; 
+  font-size: 15px;
+}
 
-.input-group input:focus {
+.input-group-r input:focus {
   outline: none;
   border-color: white;
   box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.2);
@@ -57,7 +61,7 @@
 .login-btn {
   width: 100%;
   padding: 13px 5px;
-  background: #ffffff;
+  background: #FEC2B2;
   color: #022E40;
   border: none;
   border-radius: 8px;
@@ -70,9 +74,9 @@
 }
 
 .login-btn:hover {
-  background: #f0f0f0;
+  background: #716DF2;
   transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  /* box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); */
 }
 
 .login-footer {

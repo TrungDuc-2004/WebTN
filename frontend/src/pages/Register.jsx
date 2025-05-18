@@ -89,7 +89,7 @@ const Register = () => {
           Đăng ký {role === "teacher" ? "Giáo viên" : "Học sinh"}
         </h1>
 
-        <div className="input-group">
+        <div className="input-group-r">
           <input
             onChange={inputHandler}
             name="name"
@@ -98,7 +98,7 @@ const Register = () => {
           />
         </div>
 
-        <div className="input-group">
+        <div className="input-group-r">
           <input
             onChange={inputHandler}
             name="email"
@@ -107,7 +107,7 @@ const Register = () => {
           />
         </div>
 
-        <div className="input-group">
+        <div className="input-group-r">
           <input
             onChange={inputHandler}
             name="password"
@@ -116,7 +116,7 @@ const Register = () => {
           />
         </div>
 
-        <div className="input-group">
+        <div className="input-group-r">
           <input
             onChange={inputHandler}
             name="passwordSecurity"
@@ -124,7 +124,6 @@ const Register = () => {
             placeholder="Nhập lại mật khẩu"
           />
         </div>
-
         <button className="login-btn" onClick={handleRegister}>
           Đăng ký
         </button>
