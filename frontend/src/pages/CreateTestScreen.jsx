@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import "./CreateTestScreen.css";
 import NavbarGV from "./NavbarGV";
-import FooterGV from "./FooterGV";
+import FooterGV from "./Footer";
 
 const CreateTestScreen = () => {
   const [title, setTitle] = useState("");
