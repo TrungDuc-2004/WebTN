@@ -1,12 +1,12 @@
-.footerGV {
-  background-color: #BDE3C6;
+.footer {
+  background-color: #FEC2B2;
   padding: 20px;
   border-top: 1px solid #eaeaea;
   font-family: 'Poppins', sans-serif;
   max-width: 12000px;
   margin: 0px auto 0;
   font-size: 14px;
-  color: #666666;
+  color: #022E40;
   text-align: center;
   border-radius: 0 0 12px 12px;
 }

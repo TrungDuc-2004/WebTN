@@ -1,11 +1,25 @@
+:root {
+  --primary-accent: #9CD3D9;
+  --primary-dark: #022E40;
+  --light-text-on-dark: #f0f9ff; /* Màu chữ sáng trên nền tối */
+  --input-bg-on-dark: #0a3f54; /* Màu nền input trên nền tối */
+  --input-border-on-dark: var(--primary-accent);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
 .create-test-container {
-  font-family: Arial, sans-serif;
-  background-color: #eaf8ef;
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, var(--primary-accent) 100%);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 120px;
+  padding: 120px 20px;
 }
 
 .test-info {
@@ -59,7 +73,7 @@
 
 
 .question-card {
-  background-color: #a8d5ba;
+  background-color: #022E40;
   padding: 20px;
   border-radius: 10px;
   margin-bottom: 30px;
@@ -151,12 +165,12 @@
 }
 
 .create-btn {
-  background-color: #2b7a4b;
+  background-color: #022E40;
   color: white;
 }
 
 .create-btn:hover {
-  background-color: #256b3f;
+  background-color: #022E40;
 }
 
 .Toastify__toast-container {

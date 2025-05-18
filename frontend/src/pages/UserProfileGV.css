@@ -2,7 +2,7 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: #F2FFF5;
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #9CD3D9 100%); 
 }
 
 .profile-containerGV {
@@ -71,7 +71,7 @@
 .field-valueGV {
   font-size: 15px;
   color: #333;
-  background-color: #BDE3C6;
+  background-color: white;
   padding: 8px 10px;
   border-radius: 5px;             
   border: 1px solid #ddd;
@@ -90,7 +90,7 @@
 
 .profile-buttonGV {
   padding: 10px 20px;
-  background-color: #88C798;
+  background-color: white;
   border: 1px solid #ddd;
   border-radius: 4px;
   cursor: pointer;
@@ -100,7 +100,7 @@
 }
 
 .profile-buttonGV:hover {
-  background-color: #BDE3C6;
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #9CD3D9 100%); 
 }
 
 footer {
@@ -128,7 +128,7 @@ footer {
   max-width: 420px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
   animation: popup-fade 0.3s ease-in-out;
-  background-color: #88C798;
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #9CD3D9 100%);
 }
 
 .popup-titleGV {
@@ -146,7 +146,7 @@ footer {
 }
 
 .popupGV {
-  background-color: #BDE3C6;
+  background-color: white;
   padding: 8px 10px;
   border-radius: 5px;            
   border: 1px solid #ddd;
@@ -161,7 +161,7 @@ footer {
 
 .popup-buttonGV {
   padding: 10px 18px;
-  background-color: #88C798;
+  background-color: white;
   border: none;
   border-radius: 12px;
   font-size: 14px;
@@ -171,15 +171,15 @@ footer {
 }
 
 .popup-buttonGV:hover {
-  background-color: #BDE3C6;
+  background-color: white;
 }
 
 .popup-buttonGV.cancel {
-  background-color: #88C798;
+  background-color: white;
 }
 
 .popup-buttonGV.cancel:hover {
-  background-color: #BDE3C6;
+  background-color: white;
 }
 
 .Toastify__toast-container {
