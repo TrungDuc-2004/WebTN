@@ -1,5 +1,5 @@
 :root {
-  --primary-pink: #9CD3D9;
+  --primary-pink: #FEC2B2;
   --primary-dark: #022E40;
 }
 
@@ -17,8 +17,8 @@
 }
 
 .exam-item {
-  background: #fff;
-  border-left: 4px solid var(--primary-dark);
+  background: white;
+  border-left: 4px solid var(--primary-pink);
   margin-bottom: 15px;
   padding: 15px 20px;
   display: flex;
@@ -44,12 +44,12 @@
 }
 
 .delete-button:hover {
-  background-color: rgba(156, 211, 217, 0.8);
+  transform: translateY(-2px);
 }
 
 .create-button {
   background-color: var(--primary-dark);
-  color: #fff;
+  color: var(--primary-pink);
   padding: 10px 16px;
   border: none;
   border-radius: 6px;

@@ -11,12 +11,8 @@
 
 .navbarGV-content {
   max-width: 80rem;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -26,6 +22,7 @@
   font-size: 1.7rem;
   font-weight: 700;
   color:  #022E40;
+  text-decoration: none; 
 }
 
 .navbarGV-buttons {
