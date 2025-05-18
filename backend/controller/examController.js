@@ -27,7 +27,7 @@ exports.createExam = async (req, res) => {
 
 exports.submitExamResults = async (req, res) => {
   try {
-    const { userId, examId, score, timeSpent } = req.body;
+    const { userId, examId, score, timeSpent, answers } = req.body;
 
     const user = await User.findById(userId);
 
@@ -37,6 +37,7 @@ exports.submitExamResults = async (req, res) => {
       examId,
       score,
       timeSpent,
+      answers,
     });
 
     await newResult.save();

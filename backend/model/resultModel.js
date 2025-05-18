@@ -13,7 +13,6 @@ const ResultSchema = new mongoose.Schema({
       isCorrect: Boolean,
     }
   ],
-  createdAt: { type: Date, default: Date.now },
 });
 
 
