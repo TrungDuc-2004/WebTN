@@ -180,7 +180,7 @@ const CreateTestScreen = () => {
         </div>
 
         {questions.map((q, index) => (
-          <div key={index} className="question-card">
+          <div key={index} className="question-card-c">
             <div className="question-title">Câu {index + 1}</div>
             <input
               className="question-input"
