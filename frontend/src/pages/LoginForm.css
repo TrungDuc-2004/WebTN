@@ -114,11 +114,11 @@
   display: block;
   text-align: center;
   margin-top: 15px;
-  color: #022E40;
+  color: white;
   font-size: 15px;
   transition: all 0.2s;
 }
 
 .forgot-link:hover {
-  color: #022E40;
+  color: #FEC2B2;
 }

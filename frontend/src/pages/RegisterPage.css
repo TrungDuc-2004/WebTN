@@ -32,8 +32,8 @@
 
 .title1 {
   font-size: 40px;
-  font-weight: 600;
-  margin-bottom: 30px;
+  font-weight: 700;
+  margin-bottom: 60px;
   color: #022E40; 
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 }
@@ -74,8 +74,8 @@
 }
 
 .teacher-btn {
-  background-color: #94A2F2; 
-  color: #022E40;
+  background-color: #022E40; 
+  color: white;
 }
 
 .student-btn {
@@ -84,13 +84,9 @@
 }
 
 .teacher-btn:hover {
-  background-color: #716DF2;
   transform: translateY(-5px);
-  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
 }
 
 .student-btn:hover {
-  background-color: #F2A7AD;
   transform: translateY(-5px);
-  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
 }

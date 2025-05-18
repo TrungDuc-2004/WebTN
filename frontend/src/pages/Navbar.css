@@ -34,8 +34,8 @@
 .login-button { 
   padding: 0.5rem 1rem;
   border-radius: 8px;
-  background-color: #FEC2B2;
-  color: #022E40;
+  background-color: #022E40;
+  color: #FEC2B2;
   font-weight: 600;
   transition: all 0.2s ease;
   text-decoration: none; 
