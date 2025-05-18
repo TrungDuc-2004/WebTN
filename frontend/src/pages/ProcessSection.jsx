@@ -61,7 +61,7 @@ const ProcessSection = () => {
               <div className="step-info">
                 <div className="step-number">03</div>
                 <div className="step-text">
-                  <p>Giáo viên thêm học sinh vào bài thi</p>
+                  <p>Học sinh nhập mã bài thi</p>
                 </div>
               </div>
             </div>
