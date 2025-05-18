@@ -1,81 +1,235 @@
-/* frontend/src/pages/StudentHistoryPage.css */
 .history-list-page-container {
-  padding: 100px 20px 40px; 
-  max-width: 1000px;
+  padding: 80px 20px 40px;
+  max-width: 1200px;
   margin: 0 auto;
-  font-family: 'Arial', sans-serif;
-  color: #333;
+  font-family: Arial, sans-serif;
+  background-color: #f8fafc;
+}
+
+.history-header {
+  text-align: center;
+  margin-bottom: 40px;
 }
 
 .history-list-title {
-  text-align: center;
-  margin-bottom: 30px;
-  color: #FF8A65; /* Màu cam nhạt */
-  font-size: 2rem;
-  font-weight: 600;
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: #2d3748;
+  margin-bottom: 8px;
+  background: linear-gradient(to right, #4f46e5, #06b6d4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 0.5px;
 }
 
-.loading-message, .no-history-message {
-  text-align: center;
-  font-size: 1.1em;
-  color: #777;
-  margin-top: 40px;
-  padding: 20px;
-  min-height: 200px; 
+.history-subtitle {
+  color: #64748b;
+  font-size: 1.1rem;
+  font-weight: normal;
+}
+
+/* Filter controls */
+.filter-controls {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.search-box, .date-filter {
+  position: relative;
+  flex: 1;
+  min-width: 250px;
+}
+
+.search-box i, .date-filter i {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #94a3b8;
+}
+
+.search-box input, .date-filter input {
+  width: 100%;
+  padding: 12px 16px 12px 40px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-family: Arial, sans-serif;
+  transition: all 0.3s ease;
+  background-color: white;
+}
+
+.search-box input:focus, .date-filter input:focus {
+  outline: none;
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+.clear-filter-btn {
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 6px;
+  padding: 10px 16px;
+  background-color: #f1f5f9;
+  border: none;
+  border-radius: 8px;
+  color: #64748b;
+  cursor: pointer;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  transition: all 0.2s ease;
 }
 
+.clear-filter-btn:hover {
+  background-color: #e2e8f0;
+  color: #475569;
+}
+
+/* Table styles */
 .history-table-container {
-  overflow-x: auto; 
+  max-height: 360px; /* cao khoảng cho 5 dòng */
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: white;
+  padding: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 .history-table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 20px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08); /* Shadow nhẹ hơn */
-  background-color: #fff;
-}
-
-.history-table th, .history-table td {
-  border: 1px solid #e9e9e9; /* Viền nhạt hơn */
-  padding: 12px 15px; /* Tăng padding */
-  text-align: left;
-  font-size: 0.9rem;
-  vertical-align: middle; /* Căn giữa theo chiều dọc */
+  font-family: Arial, sans-serif;
 }
 
 .history-table th {
-  background-color: #f8f9fa; 
-  color: #495057; /* Màu chữ header đậm hơn */
-  font-weight: 600;
-  text-transform: uppercase; 
+  background-color: #f8fafc;
+  color: #64748b;
+  font-weight: bold;
+  text-align: left;
+  padding: 16px 20px;
+  border-bottom: 1px solid #e2e8f0;
+  text-transform: uppercase;
+  font-size: 0.75rem;
   letter-spacing: 0.5px;
 }
 
-.history-table tbody tr:nth-child(even) {
-  background-color: #fcfdff; /* Nền xen kẽ rất nhẹ */
+.history-table td {
+  padding: 16px 20px;
+  border-bottom: 1px solid #f1f5f9;
+  color: #334155;
+  font-weight: normal;
 }
 
-.history-table tbody tr:hover {
-  background-color: #f1f6f9; /* Nền khi hover */
+.history-table tr:last-child td {
+  border-bottom: none;
 }
 
+.history-table tr:hover td {
+  background-color: #f8fafc;
+}
+
+.exam-title, .exam-date {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.exam-title i {
+  color: #4f46e5;
+}
+
+.exam-date i {
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+.exam-code {
+  font-family: Arial, sans-serif;
+  color: #475569;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+/* Score badges */
+.score-badge {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 0.85rem;
+  font-family: Arial, sans-serif;
+}
+
+.high-score {
+  background-color: #dcfce7;
+  color: #166534;
+}
+
+.medium-score {
+  background-color: #fef9c3;
+  color: #854d0e;
+}
+
+.low-score {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+/* View button */
 .history-view-details-button {
-  padding: 7px 14px; /* Điều chỉnh padding */
-  background-color: #5C6BC0; /* Màu xanh indigo */
-  color: white;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  background-color: #f1f5f9;
+  color: #334155;
+  border-radius: 6px;
   text-decoration: none;
-  border-radius: 4px;
-  font-size: 0.8rem;
-  font-weight: 500;
-  white-space: nowrap; 
-  transition: background-color 0.2s ease;
-  display: inline-block; 
+  font-size: 0.85rem;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+  transition: all 0.2s ease;
 }
 
 .history-view-details-button:hover {
-  background-color: #3F51B5; /* Đậm hơn */
+  background-color: #e2e8f0;
+  color: #1e293b;
+}
+
+.history-view-details-button i {
+  font-size: 0.8rem;
+}
+
+/* Empty state */
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  font-family: Arial, sans-serif;
+}
+
+.empty-state img {
+  width: 200px;
+  margin-bottom: 20px;
+  opacity: 0.7;
+}
+
+.empty-state h3 {
+  color: #334155;
+  margin-bottom: 8px;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.empty-state p {
+  color: #64748b;
+  max-width: 400px;
+  margin: 0 auto;
+  font-weight: normal;
 }

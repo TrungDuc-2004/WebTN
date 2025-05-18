@@ -160,7 +160,7 @@ const StudentHistoryDetailPage = () => {
             );
           })}
         </div>
-        <Link to="/history" className="back-to-history-list-btn">‹ Quay lại Danh sách</Link>
+        <Link to="/history" className="back-to-history-list-btn">Quay lại Danh sách</Link>
       </div>
       <Footer />
     </>

@@ -6,6 +6,15 @@ const ResultSchema = new mongoose.Schema({
   examId: { type: mongoose.Schema.Types.ObjectId, ref: "Exam" },
   score: Number,
   timeSpent: Number,
+  answers: [
+    {
+      questionId: { type: mongoose.Schema.Types.ObjectId, ref: "Question" },
+      selectedOption: String,  
+      isCorrect: Boolean,
+    }
+  ],
+  createdAt: { type: Date, default: Date.now },
 });
+
 
 module.exports = mongoose.model("Result", ResultSchema);
