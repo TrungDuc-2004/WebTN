@@ -14,13 +14,6 @@ const ExamListScreen = () => {
   const teacherId = state?.teacherId || state?.userId;
 
   useEffect(() => {
-    if (!teacherId) {
-      toast.error("Không tìm thấy ID giáo viên", {
-        position: "top-center",
-        autoClose: 2000,
-      });
-      return;
-    }
     const fetchExams = async () => {
       try {
         const res = await axios.get("http://localhost:3000/api/exam", {

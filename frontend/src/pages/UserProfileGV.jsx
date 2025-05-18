@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Footer from "./Footer"; 
 import NavbarGV from "./NavbarGV";
 import "./UserProfileGV.css";
 import { Link, useNavigate } from "react-router-dom";
@@ -336,8 +337,7 @@ const UserProfileGV = () => {
         draggable
         pauseOnHover
       />
-
-      <FooterGV />
+      <Footer />  
     </>
   );
 };
