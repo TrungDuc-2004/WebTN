@@ -1,186 +1,208 @@
 import React, { useEffect, useState } from "react";
-import "./TestResultScreen.css";
-import NavbarGV from "./NavbarGV";
+import { useParams, NavLink } from "react-router-dom";
+import axios from "axios";
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import ChartDataLabels from "chartjs-plugin-datalabels";
-import { useParams, NavLink } from "react-router-dom";
+
+import "./TestResultScreen.css";
+import NavbarGV from "./NavbarGV";
 import Footer from "./Footer";
-import axios from "axios";
 
 ChartJS.register(ArcElement, Tooltip, Legend, ChartDataLabels);
 
 const TestResultScreen = () => {
   const { examId } = useParams();
-  const [examData, setExamData] = useState(null);
+  const [exam, setExam] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchExamData = async () => {
+    const fetchExam = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:3000/api/exam/${examId}`
-        );
-        setExamData(response.data);
+        const res = await axios.get(`http://localhost:3000/api/exam/${examId}`);
+        setExam(res.data);
       } catch (err) {
-        console.error("Error fetching exam data:", err);
+        console.error("Lỗi khi tải dữ liệu bài kiểm tra:", err);
+      } finally {
+        setLoading(false);
       }
     };
 
-    fetchExamData();
+    fetchExam();
   }, [examId]);
 
-  if (!examData) {
-    return <div>Loading...</div>;
+  if (loading) {
+    return (
+      <div className="loading-screen">
+        <div className="spinner"></div>
+        <p>Đang tải dữ liệu bài kiểm tra...</p>
+      </div>
+    );
   }
 
-  const studentResults = examData.results || [];
+  if (!exam) {
+    return (
+      <div className="error-screen">
+        <div className="error-icon">!</div>
+        <h3>Không thể tải dữ liệu bài kiểm tra</h3>
+        <p>Vui lòng thử lại sau</p>
+      </div>
+    );
+  }
 
-  const formatDate = (date) => {
-    const d = new Date(date);
-    const day = d.getDate();
-    const month = d.getMonth() + 1;
-    const year = d.getFullYear();
-    return `${day}/${month}/${year}`;
+  // Xử lý dữ liệu học sinh
+  const studentResults = exam.results || [];
+
+  const formatDate = (date) => new Date(date).toLocaleDateString("vi-VN");
+
+  const formatTime = (seconds) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins > 0 ? `${mins} phút ` : ""}${secs} giây`;
   };
 
-  const scoreDistribution = {
-    10: studentResults.filter((item) => item.score === 10).length,
-    9: studentResults.filter((item) => item.score === 9).length,
-    8: studentResults.filter((item) => item.score === 8).length,
-    7: studentResults.filter((item) => item.score === 7).length,
-    6: studentResults.filter((item) => item.score === 6).length,
-    5: studentResults.filter((item) => item.score === 5).length,
-    4: studentResults.filter((item) => item.score === 4).length,
-    3: studentResults.filter((item) => item.score === 3).length,
-    2: studentResults.filter((item) => item.score === 2).length,
-    1: studentResults.filter((item) => item.score === 1).length,
-    0: studentResults.filter((item) => item.score === 0).length,
-  };
-
-  const filteredScores = Object.entries(scoreDistribution).filter(
-    ([key, value]) => value > 0
-  );
-
-  const total = filteredScores.reduce((acc, [_, value]) => acc + value, 0);
-  const percentages = {};
-  filteredScores.forEach(([key, value]) => {
-    percentages[key] = ((value / total) * 100).toFixed(1);
+  // Tính phân bố điểm (0 đến 10)
+  const scoreDistribution = Array(11).fill(0);
+  studentResults.forEach((student) => {
+    const score = Math.floor(student.score);
+    if (score >= 0 && score <= 10) scoreDistribution[score]++;
   });
 
+  const filteredScores = scoreDistribution
+    .map((count, score) => ({ score, count }))
+    .filter((item) => item.count > 0);
+
   const chartData = {
-    labels: filteredScores.map(([key]) => key),
+    labels: filteredScores.map((item) => `${item.score} điểm`),
     datasets: [
       {
-        data: filteredScores.map(([_, value]) => value),
+        data: filteredScores.map((item) => item.count),
         backgroundColor: [
-          "#006400",
-          "#008000",
-          "#3CB371",
-          "#00FF7F",
-          "#90EE90",
+          "#e74c3c",
+          "#f39c12",
+          "#f1c40f",
+          "#2ecc71",
+          "#27ae60",
+          "#16a085",
+          "#3498db",
+          "#2980b9",
+          "#9b59b6",
+          "#8e44ad",
+          "#34495e",
         ],
-        hoverBackgroundColor: [
-          "#004d00",
-          "#006600",
-          "#2e8b57",
-          "#00cc66",
-          "#7fdc7f",
-        ],
+        borderColor: "#fff",
+        borderWidth: 2,
       },
     ],
   };
 
   const chartOptions = {
     responsive: true,
+    maintainAspectRatio: false,
     plugins: {
       legend: {
-        display: false,
+        position: "right",
+        labels: {
+          boxWidth: 12,
+          padding: 20,
+          font: {
+            size: 12,
+          },
+        },
       },
       datalabels: {
+        formatter: (value) => {
+          const total = studentResults.length;
+          const percentage = ((value / total) * 100).toFixed(1);
+          return percentage > 5 ? `${percentage}%` : "";
+        },
         color: "#fff",
         font: {
           weight: "bold",
-          size: 14,
-        },
-        formatter: (value, context) => {
-          const total =
-            context.chart._metasets[0].total ||
-            context.dataset.data.reduce((a, b) => a + b, 0);
-          const percentage = (value / total) * 100;
-          return `${percentage.toFixed(1)}%`;
+          size: 12,
         },
       },
     },
+    cutout: "60%",
   };
 
   return (
     <>
       <NavbarGV />
 
-      <div className="content-area">
-        <div className="test-header">
-          <div className="test-title">
-            Tên bài KT {examData.title}{" "}
-            <span className="test-subtitle">
-              Ngày tạo: {formatDate(examData.createdAt)}
-            </span>
+      <div className="review-container">
+        <div className="test-header-container">
+          <div className="test-header">
+            <h1 className="test-title">{exam.title}</h1>
+            <div className="test-meta-container">
+              <div className="test-meta">
+                <span className="meta-icon">📅</span>
+                <span>{formatDate(exam.createdAt)}</span>
+              </div>
+              <div className="test-meta">
+                <span className="meta-icon">⏱️</span>
+                <span>{exam.duration} phút</span>
+              </div>
+              <div className="test-meta highlight">
+                <span className="meta-icon">👨‍🎓</span>
+                <span>Số học sinh: {studentResults.length}</span>
+              </div>
+            </div>
           </div>
-          <div className="test-stats"> Thời gian: {examData.duration} phút</div>
         </div>
 
-        <div className="tab-nav">
-          <NavLink
-            to={`/review-test/${examId}`}
-            className={({ isActive }) => (isActive ? "active" : "")}
-          >
-            Câu hỏi
-          </NavLink>
-          <NavLink
-            to={`/resulttest/${examId}`}
-            className={({ isActive }) => (isActive ? "active" : "")}
-          >
-            Điểm
-          </NavLink>
+        <div className="tab-container">
+          <div className="tab-nav">
+            <NavLink
+              to={`/review-test/${examId}`}
+              className={({ isActive }) => `tab-item ${isActive ? "active" : ""}`}
+            >
+              <span className="tab-icon">📝</span>
+              <span className="tab-text">Câu hỏi</span>
+            </NavLink>
+            <NavLink
+              to={`/resulttest/${examId}`}
+              className={({ isActive }) => `tab-item ${isActive ? "active" : ""}`}
+            >
+              <span className="tab-icon">📊</span>
+              <span className="tab-text">Kết quả</span>
+            </NavLink>
+          </div>
         </div>
 
         <div className="results-section">
           <div className="students-panel">
-            {studentResults.map((student, index) => (
-              <div className="student-row" key={index}>
-                <div className="student-details">
-                  <div className="student-name">{student.name}</div>{" "}
-                  <div className="student-time">
-                    Thời gian làm bài:{" "}
-                    {(() => {
-                      const timeSpent = student.timeSpent; 
-                      const minutes = Math.floor(timeSpent / 60);
-                      const seconds = timeSpent % 60; 
-
-                      if (minutes > 0) {
-                        return `${minutes} phút ${seconds} giây`;
-                      } else {
-                        return `${seconds} giây`;
-                      }
-                    })()}
+            <h3 className="panel-title">Danh sách học sinh</h3>
+            <div className="student-list">
+              {studentResults.map((student, idx) => (
+                <div className="student-row" key={idx}>
+                  <div className="student-info">
+                    <span className="student-index">{idx + 1}.</span>
+                    <span className="student-name">{student.name}</span>
+                  </div>
+                  <div className="student-details">
+                    <span className="student-time">{formatTime(student.timeSpent)}</span>
+                    <span
+                      className={`score-badge ${
+                        student.score >= 8
+                          ? "high-score"
+                          : student.score >= 5
+                          ? "medium-score"
+                          : "low-score"
+                      }`}
+                    >
+                      {student.score.toFixed(1)}
+                    </span>
                   </div>
                 </div>
-                <div className="score-badge">{student.score}</div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
 
           <div className="stats-panel">
-            <div className="chart">
-              <div className="donut-chart">
-                <Doughnut
-                  data={chartData}
-                  options={chartOptions}
-                  plugins={[ChartDataLabels]}
-                />
-              </div>
-              <div className="chart-legend">
-                <div className="chart-caption">Thống kê điểm</div>
-              </div>
+            <h3 className="panel-title">Thống kê điểm</h3>
+            <div className="chart-container">
+              <Doughnut data={chartData} options={chartOptions} />
             </div>
           </div>
         </div>
