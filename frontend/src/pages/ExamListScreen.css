@@ -1,132 +1,302 @@
 :root {
-  --primary-pink: #FEC2B2;
-  --primary-dark: #022E40;
+  --primary-color: #022E40;       /* Xanh đậm chủ đạo */
+  --secondary-color: #FEC2B2;     /* Cam nhạt */
+  --accent-color: #9CD3D9;        /* Xanh nhạt */
+  --light-bg: #FFFCEF;            /* Nền vàng nhạt */
+  --text-dark: #022E40;           /* Chữ xanh đậm */
+  --text-light: #FFFCEF;          /* Chữ vàng nhạt */
+  --card-shadow: 0 12px 25px rgba(2, 46, 64, 0.18);
+  --btn-shadow-hover: 0 10px 20px rgba(1, 26, 36, 0.4);
+  --transition-speed: 0.3s;
+  --border-radius: 16px;
+  --font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* Tổng thể nền và font */
+body {
+  font-family: var(--font-family);
+  background: linear-gradient(135deg, var(--light-bg) 0%, #F9F5E9 100%);
+  color: var(--text-dark);
+  margin: 0;
+  padding: 0;
+}
+
+/* Container chính */
 .exam-list-container {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
-  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #9CD3D9 100%); 
+  min-height: 100vh;
+  padding: 120px 40px 80px;
+  max-width: 1300px;
+  margin: 0 auto;
 }
 
-.exam-list {
-  flex-grow: 1;
-  padding: 120px;
-}
-
-.exam-item {
-  background: white;
-  border-left: 4px solid var(--primary-pink);
-  margin-bottom: 15px;
-  padding: 15px 20px;
+/* Header */
+.exam-list-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 45px;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
-.exam-info p {
-  margin: 0;
-  color: var(--primary-dark);
+.exam-list-title {
+  font-size: 2.6rem;
+  font-weight: 800;
+  color: var(--primary-color);
+  position: relative;
+  padding-bottom: 12px;
+  letter-spacing: 1.1px;
+  user-select: none;
+}
+
+.exam-list-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100px;
+  height: 5px;
+  background: var(--secondary-color);
+  border-radius: 4px;
+  box-shadow: 0 0 10px var(--secondary-color);
+}
+
+/* Exam Grid */
+.exam-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  gap: 36px;
+}
+
+/* Exam Card */
+.exam-item {
+  background: white;
+  border-radius: var(--border-radius);
+  padding: 32px 28px 36px;
+  box-shadow: var(--card-shadow);
+  position: relative;
+  cursor: default;
+  overflow: hidden;
+  transition:
+    transform var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1);
+  user-select: none;
+  animation: fadeInUp 0.6s ease forwards;
+  will-change: transform, box-shadow;
+}
+
+.exam-item:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 20px 50px rgba(2, 46, 64, 0.25);
+}
+
+/* Thông tin bài kiểm tra */
+.exam-info {
+  cursor: pointer;
+  margin-bottom: 25px;
+  user-select: none;
+  transition: color var(--transition-speed);
+}
+
+.exam-info:hover strong {
+  color: var(--secondary-color);
+}
+
+.exam-info strong {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 18px;
+  display: block;
+  line-height: 1.3;
+  letter-spacing: 0.03em;
+}
+
+.exam-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.exam-meta-item {
+  display: flex;
+  align-items: center;
+  color: var(--primary-color);
+  font-size: 1rem;
+  font-weight: 600;
+  user-select: none;
+  letter-spacing: 0.02em;
+}
+
+.exam-meta-icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+  color: var(--secondary-color);
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Nút thao tác */
+.exam-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 25px;
+  border-top: 1px dashed rgba(2, 46, 64, 0.12);
+  gap: 15px;
+}
+
+.view-button, .delete-button, .create-button {
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 12px 24px;
+  transition:
+    background-color var(--transition-speed),
+    box-shadow var(--transition-speed),
+    transform var(--transition-speed);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  user-select: none;
+  border: none;
+  box-shadow: 0 6px 14px rgba(2, 46, 64, 0.12);
+}
+
+.view-button {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.view-button:hover {
+  background-color: #011a24;
+  box-shadow: var(--btn-shadow-hover);
+  transform: translateY(-3px);
 }
 
 .delete-button {
-  background-color: var(--primary-pink);
-  color: var(--primary-dark);
-  border: none;
-  padding: 8px 14px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background 0.2s;
+  background-color: transparent;
+  color: #e74c3c;
+  border: 2px solid #e74c3c;
 }
 
 .delete-button:hover {
-  transform: translateY(-2px);
+  background-color: #e74c3c;
+  color: white;
+  box-shadow: 0 6px 18px rgba(231, 76, 60, 0.5);
+  transform: translateY(-3px);
+}
+
+/* Nút tạo bài kiểm tra */
+.create-button-container {
+  margin-top: 48px;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .create-button {
-  background-color: var(--primary-dark);
-  color: var(--primary-pink);
-  padding: 10px 16px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  float: right;
-  margin-top: 10px;
+  background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+  color: white;
+  box-shadow: 0 8px 16px rgba(156, 211, 217, 0.7);
+  font-size: 1.15rem;
+  padding: 16px 34px;
+  border-radius: 14px;
 }
 
 .create-button:hover {
-  filter: brightness(110%);
+  background: linear-gradient(135deg, #011a24, #75b8c8);
+  box-shadow: 0 12px 28px rgba(117, 184, 200, 0.9);
+  transform: translateY(-5px);
 }
 
-.Toastify__toast-container {
-  width: 100%;
-  max-width: 500px;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 9999;
+/* Biểu tượng + ở nút tạo */
+.create-button::before {
+  content: '+';
+  font-size: 1.6rem;
+  font-weight: 400;
+  margin-right: 10px;
+  display: inline-block;
+  user-select: none;
 }
 
-.Toastify__toast {
-  background-color: rgba(255, 255, 255, 0.95);
-  color: var(--primary-dark);
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  padding: 16px 24px;
+/* Trạng thái khi không có dữ liệu */
+.empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 80px 20px;
+  color: var(--primary-color);
+  opacity: 0.75;
+  user-select: none;
 }
 
-.Toastify__toast--success {
-  border-left: 4px solid var(--primary-dark);
+.empty-state img {
+  width: 220px;
+  margin-bottom: 25px;
+  opacity: 0.65;
 }
 
-.Toastify__toast--error {
-  border-left: 4px solid var(--primary-pink);
+/* Responsive */
+@media (max-width: 1024px) {
+  .exam-list {
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  }
 }
 
-.Toastify__toast--info {
-  border-left: 4px solid var(--primary-dark);
+@media (max-width: 768px) {
+  .exam-list-container {
+    padding: 100px 20px 60px;
+  }
+
+  .exam-list-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+  }
+
+  .exam-list-title {
+    font-size: 2rem;
+  }
+
+  .exam-list {
+    grid-template-columns: 1fr;
+  }
+
+  .create-button-container {
+    justify-content: center;
+  }
+
+  .create-button {
+    width: 100%;
+  }
 }
 
-.Toastify__progress-bar {
-  background: linear-gradient(to right, var(--primary-pink), #FEE9D0);
-  height: 3px;
+/* Animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.Toastify__close-button {
-  color: var(--primary-pink);
-  opacity: 0.7;
-  transition: opacity 0.2s;
+.exam-item:nth-child(1) {
+  animation-delay: 0.1s;
 }
-
-.Toastify__close-button:hover {
-  opacity: 1;
+.exam-item:nth-child(2) {
+  animation-delay: 0.25s;
 }
-
-.confirm-dialog-buttons {
-  display: flex;
-  justify-content: center;
-  margin-top: 10px;
-  gap: 10px;
+.exam-item:nth-child(3) {
+  animation-delay: 0.4s;
 }
-
-.confirm-button {
-  padding: 8px 14px;
-  background: var(--primary-dark);
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+.exam-item:nth-child(4) {
+  animation-delay: 0.55s;
 }
-
-.cancel-button {
-  padding: 8px 14px;
-  background: var(--primary-pink);
-  color: var(--primary-dark);
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+.exam-item:nth-child(5) {
+  animation-delay: 0.7s;
 }

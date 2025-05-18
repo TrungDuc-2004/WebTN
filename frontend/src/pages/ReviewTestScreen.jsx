@@ -4,9 +4,11 @@ import axios from "axios";
 import "./ReviewTestScreen.css";
 import NavbarGV from "./NavbarGV";
 import Footer from "./Footer";
+
 const ReviewTestScreen = () => {
   const { examId } = useParams();
   const [exam, setExam] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchExam = async () => {
@@ -15,77 +17,107 @@ const ReviewTestScreen = () => {
         setExam(res.data);
       } catch (err) {
         console.error("Lỗi khi tải bài kiểm tra:", err);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchExam();
   }, [examId]);
 
-  if (!exam) return <div>Đang tải...</div>;
+  if (loading) {
+    return (
+      <div className="loading-screen">
+        <div className="spinner"></div>
+        <p>Đang tải bài kiểm tra...</p>
+      </div>
+    );
+  }
+
+  if (!exam) {
+    return (
+      <div className="error-screen">
+        <div className="error-icon">!</div>
+        <h3>Không thể tải bài kiểm tra</h3>
+        <p>Vui lòng thử lại sau</p>
+      </div>
+    );
+  }
 
   return (
     <>
       <NavbarGV />
       <div className="review-container">
-        <div className="test-header">
-          <div>
-            <strong>{exam.title}</strong>{" "}
-            <span className="dim-text">
-              ({new Date(exam.createdAt).toLocaleDateString("en-GB")})
-            </span>
-          </div>
-          <div className="test-meta">
-            Tổng số điểm: {exam.questions.reduce((sum, q) => sum + q.score, 0)}{" "}
-            &nbsp; Thời gian: {exam.duration} phút
+        <div className="test-header-container">
+          <div className="test-header">
+            <h1 className="test-title">{exam.title}</h1>
+            <div className="test-meta-container">
+              <div className="test-meta">
+                <span className="meta-icon">📅</span>
+                <span>{new Date(exam.createdAt).toLocaleDateString("vi-VN")}</span>
+              </div>
+              <div className="test-meta">
+                <span className="meta-icon">⏱️</span>
+                <span>{exam.duration} phút</span>
+              </div>
+              <div className="test-meta highlight">
+                <span className="meta-icon">⭐</span>
+                <span>Tổng điểm: {exam.questions.reduce((sum, q) => sum + q.score, 0)}</span>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div className="tab-nav">
-          <NavLink
-            to={`/review-test/${examId}`}
-            className={({ isActive }) => (isActive ? "active" : "")}
-          >
-            Câu hỏi
-          </NavLink>
-          <NavLink
-            to={`/resulttest/${examId}`}
-            className={({ isActive }) => (isActive ? "active" : "")}
-          >
-            Điểm
-          </NavLink>
+        <div className="tab-container">
+          <div className="tab-nav">
+            <NavLink
+              to={`/review-test/${examId}`}
+              className={({ isActive }) => `tab-item ${isActive ? "active" : ""}`}
+            >
+              <span className="tab-icon">📝</span>
+              <span className="tab-text">Câu hỏi</span>
+            </NavLink>
+            <NavLink
+              to={`/resulttest/${examId}`}
+              className={({ isActive }) => `tab-item ${isActive ? "active" : ""}`}
+            >
+              <span className="tab-icon">📊</span>
+              <span className="tab-text">Kết quả</span>
+            </NavLink>
+          </div>
         </div>
 
-        {exam.questions.map((q, index) => (
-          <div key={q._id} className="question-card">
-            <div className="question-title">Câu {index + 1}</div>
-            <input className="question-input" value={q.content} readOnly />
-
-            <div className="answers-group">
-              {["A", "B", "C", "D"].map((opt, i) => (
-                <label key={opt} className="answer-option">
-                  <input
-                    type="radio"
-                    checked={q.correctAnswer === opt}
-                    readOnly
-                  />
-                  <span className="label">{opt}</span>
-                  <input
-                    className="answer-input"
-                    value={q.options[i]}
-                    readOnly
-                  />
-                </label>
-              ))}
+        <div className="questions-container">
+          {exam.questions.map((q, index) => (
+            <div key={q._id} className="question-card">
+              <div className="question-header">
+                <div className="question-number">Câu {index + 1}</div>
+                <div className="question-score">{q.score} điểm</div>
+              </div>
+              
+              <div className="question-content">{q.content}</div>
+              
+              <div className="answers-container">
+                {q.options.map((option, i) => (
+                  <div 
+                    key={`${q._id}-${i}`}
+                    className={`answer-option ${q.correctAnswer === String.fromCharCode(65 + i) ? "correct" : ""}`}
+                  >
+                    <div className="answer-radio">
+                      <div className="radio-circle">
+                        {q.correctAnswer === String.fromCharCode(65 + i) && (
+                          <div className="radio-dot"></div>
+                        )}
+                      </div>
+                      <span className="answer-letter">{String.fromCharCode(65 + i)}</span>
+                    </div>
+                    <div className="answer-text">{option}</div>
+                  </div>
+                ))}
+              </div>
             </div>
-
-            <div className="score-time">
-              <label>
-                Điểm
-                <input type="text" value={q.score} readOnly />
-              </label>
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
       <Footer />
     </>
