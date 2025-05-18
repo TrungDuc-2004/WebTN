@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./TestResultScreen.css";
 import NavbarGV from "./NavbarGV";
-import FooterGV from "./FooterGV";
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import ChartDataLabels from "chartjs-plugin-datalabels";

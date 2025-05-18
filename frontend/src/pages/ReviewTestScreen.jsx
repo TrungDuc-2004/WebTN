@@ -3,7 +3,6 @@ import { useParams, NavLink } from "react-router-dom";
 import axios from "axios";
 import "./ReviewTestScreen.css";
 import NavbarGV from "./NavbarGV";
-import FooterGV from "./FooterGV";
 
 const ReviewTestScreen = () => {
   const { examId } = useParams();
