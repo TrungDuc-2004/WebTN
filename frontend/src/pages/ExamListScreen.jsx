@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import "./ExamListScreen.css";
 import NavbarGV from "./NavbarGV";
-import FooterGV from "./FooterGV";
+import FooterGV from "./Footer";
 
 const ExamListScreen = () => {
   const [exams, setExams] = useState([]);

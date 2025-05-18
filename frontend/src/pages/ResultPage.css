@@ -6,6 +6,7 @@
   align-items: center;
   padding: 40px 20px;
   overflow: hidden;
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #9CD3D9 100%); 
 }
 
 .background-image {
@@ -43,7 +44,7 @@
 
 .congrats {
   font-size: 34px;
-  color: #FED7B2;
+  color: black;
   margin-bottom: 40px; 
   font-weight: 600;
   display: block;

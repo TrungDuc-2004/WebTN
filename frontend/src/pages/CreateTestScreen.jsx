@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import "./CreateTestScreen.css";
 import NavbarGV from "./NavbarGV";
-import FooterGV from "./FooterGV";
+import FooterGV from "./Footer";
 
 const CreateTestScreen = () => {
   const [title, setTitle] = useState("");
@@ -180,7 +180,7 @@ const CreateTestScreen = () => {
         </div>
 
         {questions.map((q, index) => (
-          <div key={index} className="question-card">
+          <div key={index} className="question-card-c">
             <div className="question-title">Câu {index + 1}</div>
             <input
               className="question-input"

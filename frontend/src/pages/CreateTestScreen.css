@@ -35,10 +35,10 @@
   padding: 8px;
   width: 250px;
   margin-bottom: 8px;
-  border-radius: 20px;
+  border-radius: 8px;
   border: 1px solid #ccc;
   font-size: 18px;
-  background-color: #eaf8ef;
+  background-color: white;
 }
 
 .test-time {
@@ -72,7 +72,7 @@
 }
 
 
-.question-card {
+.question-card-c {
   background-color: #022E40;
   padding: 20px;
   border-radius: 10px;
@@ -84,6 +84,7 @@
 .question-title {
   font-weight: bold;
   margin-bottom: 8px;
+  color: white;
 }
 
 .question-input {
@@ -105,6 +106,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
+  color: white;
 }
 
 .answer-option input[type="radio"] {
@@ -161,16 +163,22 @@
 }
 
 .add-btn {
-  background-color: #d2ead6;
+  background-color: white;
+  color: #022E40;
+  border: 3px solid #FEC2B2;
+}
+
+.add-btn:hover {
+  transform: translateY(-2px);
 }
 
 .create-btn {
   background-color: #022E40;
-  color: white;
+  color: #FEC2B2;
 }
 
 .create-btn:hover {
-  background-color: #022E40;
+  transform: translateY(-2px);
 }
 
 .Toastify__toast-container {
