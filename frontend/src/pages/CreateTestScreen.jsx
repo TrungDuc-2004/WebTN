@@ -4,6 +4,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import "./CreateTestScreen.css";
+import { FiPlusCircle, FiSave, FiClock, FiStar, FiHelpCircle } from "react-icons/fi";
 import NavbarGV from "./NavbarGV";
 import Footer from "./Footer";
 
@@ -139,7 +140,7 @@ const CreateTestScreen = () => {
         <div className="test-info">
           <input
             className="test-name"
-            placeholder="Nhập tên bài KT"
+            placeholder="Nhập tên bài kiểm tra"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
