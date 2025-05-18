@@ -6,6 +6,7 @@ const ResultSchema = new mongoose.Schema({
   examId: { type: mongoose.Schema.Types.ObjectId, ref: "Exam" },
   score: Number,
   timeSpent: Number,
+  createdAt: { type: Date, default: Date.now },
   answers: [
     {
       questionId: { type: mongoose.Schema.Types.ObjectId, ref: "Question" },

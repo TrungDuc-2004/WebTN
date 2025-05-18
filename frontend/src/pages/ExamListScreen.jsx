@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import "./ExamListScreen.css";
 import NavbarGV from "./NavbarGV";
-import FooterGV from "./Footer";
+import Footer from "./Footer";
 
 const ExamListScreen = () => {
   const [exams, setExams] = useState([]);
@@ -146,7 +146,7 @@ const ExamListScreen = () => {
         draggable
         pauseOnHover
       />
-      <FooterGV />
+      <Footer />
     </>
   );
 };

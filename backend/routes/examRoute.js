@@ -7,6 +7,7 @@ const {
   deleteExam,
   getExamByCode,
   submitExamResults,
+
 } = require("../controller/examController");
 
 const router = express.Router();

@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import "./CreateTestScreen.css";
 import NavbarGV from "./NavbarGV";
-import FooterGV from "./Footer";
+import Footer from "./Footer";
 
 const CreateTestScreen = () => {
   const [title, setTitle] = useState("");
@@ -252,7 +252,7 @@ const CreateTestScreen = () => {
         draggable
         pauseOnHover
       />
-      <FooterGV />
+      <Footer />
     </>
   );
 };

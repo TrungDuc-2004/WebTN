@@ -4,6 +4,7 @@ const cors = require("cors");
 
 const userRoutes = require("./routes/userRoute.js");
 const examRoutes = require("./routes/examRoute.js");
+const resultRoutes = require("./routes/resultRoute.js");
 
 const app = express();
 const port = 3000;
@@ -17,5 +18,5 @@ connectDb();
 
 app.use("/api", userRoutes);
 app.use("/api", examRoutes);
-
+app.use("/api", resultRoutes);
 app.listen(port, () => console.log(`http://localhost:${port}`));

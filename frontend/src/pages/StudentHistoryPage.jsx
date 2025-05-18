@@ -4,122 +4,15 @@ import Navbar2 from "./Navbar2";
 import Footer from "./Footer";
 import "./StudentHistoryPage.css";
 import { toast } from "react-toastify";
-
-const MOCK_USER_ID = "student123";
-
-const mockUserExamHistory = [
-  {
-    _id: "submission001",
-    userId: "student123",
-    examCode: "KTGK-TOAN10",
-    examTitle: "Kiểm tra giữa kỳ Toán lớp 10",
-    dateCompleted: "2025-05-10T10:30:00Z",
-    score: 8,
-    totalPossibleScore: 10,
-  },
-  {
-    _id: "submission002",
-    userId: "student123",
-    examCode: "VATLY_15P_CH2",
-    examTitle: "Vật Lý 15 phút - Chương 2",
-    dateCompleted: "2025-05-12T14:00:00Z",
-    score: 6,
-    totalPossibleScore: 10,
-  },
-  {
-    _id: "submission003",
-    userId: "anotherStudent",
-    examCode: "HOAHOC_HK1",
-    examTitle: "Hóa Học HK1 - Đề A",
-    dateCompleted: "2025-04-10T09:00:00Z",
-    score: 9,
-    totalPossibleScore: 10,
-  },
-  {
-    _id: "submission004",
-    userId: "student123",
-    examCode: "ANHVAN_UNIT3",
-    examTitle: "Tiếng Anh - Unit 3 Test",
-    dateCompleted: "2025-04-20T11:00:00Z",
-    score: 9,
-    totalPossibleScore: 10,
-  },
-  {
-    _id: "submission004",
-    userId: "student123",
-    examCode: "ANHVAN_UNIT3",
-    examTitle: "Tiếng Anh - Unit 3 Test",
-    dateCompleted: "2025-04-20T11:00:00Z",
-    score: 9,
-    totalPossibleScore: 10,
-  },
-  {
-    _id: "submission004",
-    userId: "student123",
-    examCode: "ANHVAN_UNIT3",
-    examTitle: "Tiếng Anh - Unit 3 Test",
-    dateCompleted: "2025-04-20T11:00:00Z",
-    score: 9,
-    totalPossibleScore: 10,
-  },
-  {
-    _id: "submission004",
-    userId: "student123",
-    examCode: "ANHVAN_UNIT3",
-    examTitle: "Tiếng Anh - Unit 3 Test",
-    dateCompleted: "2025-04-20T11:00:00Z",
-    score: 9,
-    totalPossibleScore: 10,
-  },
-  {
-    _id: "submission004",
-    userId: "student123",
-    examCode: "ANHVAN_UNIT3",
-    examTitle: "Tiếng Anh - Unit 3 Test",
-    dateCompleted: "2025-04-20T11:00:00Z",
-    score: 2,
-    totalPossibleScore: 2,
-  },
-  {
-    _id: "submission004",
-    userId: "student123",
-    examCode: "ANHVAN_UNIT3",
-    examTitle: "Tiếng Anh - Unit 3 Test",
-    dateCompleted: "2025-04-20T11:00:00Z",
-    score: 9,
-    totalPossibleScore: 10,
-  },
-  {
-    _id: "submission004",
-    userId: "student123",
-    examCode: "ANHVAN_UNIT3",
-    examTitle: "Tiếng Anh - Unit 3 Test",
-    dateCompleted: "2025-04-20T11:00:00Z",
-    score: 9,
-    totalPossibleScore: 10,
-  },
-  {
-    _id: "submission004",
-    userId: "student123",
-    examCode: "ANHVAN_UNIT3",
-    examTitle: "Tiếng Anh - Unit 3 Test",
-    dateCompleted: "2025-04-20T11:00:00Z",
-    score: 9,
-    totalPossibleScore: 10,
-  },
-];
+import axios from "axios";
 
 const StudentHistoryPage = () => {
   const [historyEntries, setHistoryEntries] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // State nhập liệu tạm thời cho debounce
   const [inputSearchTerm, setInputSearchTerm] = useState("");
-  // State chính thức dùng để filter, cập nhật sau debounce
   const [searchTerm, setSearchTerm] = useState("");
   const [filterDate, setFilterDate] = useState("");
-
-  const navigate = useNavigate();
 
   let currentUser = null;
   const userString = localStorage.getItem("user");
@@ -132,29 +25,47 @@ const StudentHistoryPage = () => {
   }
 
   useEffect(() => {
-    if (!currentUser || !currentUser._id) {
-      return;
-    }
-    setLoading(true);
-    setTimeout(() => {
-      const userSpecificHistory = mockUserExamHistory
-        .filter((entry) => entry.userId === MOCK_USER_ID)
-        .sort((a, b) => new Date(b.dateCompleted) - new Date(a.dateCompleted));
-      setHistoryEntries(userSpecificHistory);
-      setLoading(false);
-    }, 700);
-  }, [currentUser?._id, navigate]);
+    const fetchHistory = async () => {
+      setLoading(true);
+      try {
+        const res = await axios.get("http://localhost:3000/api/results", {
+          params: { userId: currentUser._id },
+        });
 
-  // Debounce inputSearchTerm -> searchTerm
+        const data = res.data.map((result) => {
+          const totalPossibleScore = result.examId.questions.reduce(
+            (sum, q) => sum + (q.score || 0),
+            0
+          );
+          return {
+            _id: result._id,
+            examTitle: result.examId.title,
+            examCode: result.examId.code,
+            dateCompleted: result.createdAt,
+            score: result.score,
+            totalPossibleScore,
+          };
+        });
+
+        setHistoryEntries(data);
+      } catch (err) {
+        console.error("Lỗi khi tải lịch sử làm bài:", err);
+        toast.error("Không tải được lịch sử làm bài.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchHistory();
+  }, []);
+
   useEffect(() => {
     const handler = setTimeout(() => {
       setSearchTerm(inputSearchTerm);
     }, 300);
-
     return () => clearTimeout(handler);
   }, [inputSearchTerm]);
 
-  // Filter kết hợp tên bài và mã đề, cùng lọc theo ngày
   const filteredEntries = historyEntries.filter((entry) => {
     const searchTermLower = searchTerm.toLowerCase();
 
@@ -168,6 +79,7 @@ const StudentHistoryPage = () => {
 
     return matchesSearch && matchDate;
   });
+
   if (loading) {
     return (
       <>
@@ -191,7 +103,6 @@ const StudentHistoryPage = () => {
           </p>
         </div>
 
-        {/* Thanh tìm kiếm và lọc */}
         <div className="filter-controls">
           <div className="search-box">
             <i className="fas fa-search"></i>
