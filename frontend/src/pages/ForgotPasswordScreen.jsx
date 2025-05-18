@@ -10,6 +10,7 @@ const ForgotPasswordScreen = () => {
   const [email, setEmail] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [cccd, setCccd] = useState("");
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
@@ -27,7 +28,7 @@ const ForgotPasswordScreen = () => {
     try {
       const response = await axios.post(
         "http://localhost:3000/api/reset-password",
-        { email, newPassword }
+        { email, cccd, newPassword }
       );
       setLoading(false);
       setMessage(response.data.message);
@@ -52,6 +53,13 @@ const ForgotPasswordScreen = () => {
             placeholder="Nhập email của bạn"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <input
+            type="number"
+            placeholder="Nhập căn cước công dân của bạn"
+            value={cccd}
+            onChange={(e) => setCccd(e.target.value)}
             required
           />
           <input

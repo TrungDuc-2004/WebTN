@@ -3,7 +3,7 @@ import { useParams, NavLink } from "react-router-dom";
 import axios from "axios";
 import "./ReviewTestScreen.css";
 import NavbarGV from "./NavbarGV";
-
+import Footer from "./Footer";
 const ReviewTestScreen = () => {
   const { examId } = useParams();
   const [exam, setExam] = useState(null);
@@ -87,7 +87,7 @@ const ReviewTestScreen = () => {
           </div>
         ))}
       </div>
-      <FooterGV />
+      <Footer />
     </>
   );
 };

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Footer from "./Footer"; 
+import Footer from "./Footer";
 import NavbarGV from "./NavbarGV";
 import "./UserProfileGV.css";
 import { Link, useNavigate } from "react-router-dom";
@@ -17,6 +17,7 @@ const UserProfileGV = () => {
     name: "",
     email: "",
     school: "",
+    cccd: "",
   });
   const [passwordForm, setPasswordForm] = useState({
     oldPassword: "",
@@ -73,6 +74,7 @@ const UserProfileGV = () => {
       name: editUser.name.trim() || user.name,
       email: editUser.email.trim() || user.email,
       school: editUser.school.trim() || user.school,
+      cccd: editUser.cccd.trim() || user.cccd,
     };
 
     try {
@@ -159,6 +161,7 @@ const UserProfileGV = () => {
               <div className="profile-basic-infoGV">
                 <h2>{user?.name}</h2>
                 <p>{user?.email}</p>
+                <p>{user?.cccd}</p>
                 <p>{user?.school || "Chưa có thông tin"}</p>
               </div>
             </div>
@@ -174,9 +177,12 @@ const UserProfileGV = () => {
               <div className="field-valueGV">{user?.email}</div>
             </div>
             <div className="profile-fieldGV">
+              <div className="field-labelGV">CCCD</div>
+              <div className="field-valueGV">{user?.cccd}</div>
+            </div>
+            <div className="profile-fieldGV">
               <div className="field-labelGV">Trường</div>
               <div className="field-valueGV">
-                {" "}
                 {user?.school || "Chưa có thông tin"}
               </div>
             </div>
@@ -189,6 +195,7 @@ const UserProfileGV = () => {
                     name: user.name,
                     email: user.email,
                     school: user.school || "",
+                    cccd: user.cccd || "",
                   });
                   setShowEditInfo(true);
                 }}
@@ -241,6 +248,16 @@ const UserProfileGV = () => {
                 value={editUser.email}
                 onChange={(e) =>
                   setEditUser({ ...editUser, email: e.target.value })
+                }
+              />
+
+              <input
+                className="popupGV"
+                type="number"
+                placeholder="Căn cước công dân"
+                value={editUser.cccd}
+                onChange={(e) =>
+                  setEditUser({ ...editUser, cccd: e.target.value })
                 }
               />
 
@@ -337,7 +354,7 @@ const UserProfileGV = () => {
         draggable
         pauseOnHover
       />
-      <Footer />  
+      <Footer />
     </>
   );
 };

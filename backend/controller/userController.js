@@ -33,8 +33,6 @@ const userLogin = async (req, res) => {
   }
 };
 
-
-
 const updateUserByEmail = async (req, res) => {
   const { email } = req.params;
   const updatedData = req.body;
@@ -105,7 +103,7 @@ const changeUserPassword = async (req, res) => {
 };
 
 const resetPassword = async (req, res) => {
-  const { email, newPassword } = req.body;
+  const { email, cccd, newPassword } = req.body;
 
   try {
     const user = await User.findOne({ email });
@@ -114,7 +112,11 @@ const resetPassword = async (req, res) => {
         .status(404)
         .json({ message: "Không tìm thấy người dùng với email này." });
     }
-
+    if (user.cccd !== cccd) {
+      return res
+        .status(404)
+        .json({ message: "Căn cước công dân không đúng." });
+    }
     user.password = newPassword;
     await user.save();
 

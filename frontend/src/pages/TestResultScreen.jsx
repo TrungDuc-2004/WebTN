@@ -5,6 +5,7 @@ import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import ChartDataLabels from "chartjs-plugin-datalabels";
 import { useParams, NavLink } from "react-router-dom";
+import Footer from "./Footer";
 import axios from "axios";
 
 ChartJS.register(ArcElement, Tooltip, Legend, ChartDataLabels);
@@ -185,7 +186,7 @@ const TestResultScreen = () => {
         </div>
       </div>
 
-      <FooterGV />
+      <Footer />
     </>
   );
 };

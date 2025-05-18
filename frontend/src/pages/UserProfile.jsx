@@ -3,8 +3,8 @@ import React, { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Navbar2 from "./Navbar2"; // Đảm bảo đường dẫn đúng nếu Navbar2 cũng ở src/pages
-import Footer from "./Footer";   // Đảm bảo đường dẫn đúng
-import "./UserProfile.css";     // Đảm bảo đường dẫn đúng
+import Footer from "./Footer"; // Đảm bảo đường dẫn đúng
+import "./UserProfile.css"; // Đảm bảo đường dẫn đúng
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import defaultAvatar from "../assets/user.png"; // << IMPORT ẢNH MẶC ĐỊNH
@@ -19,6 +19,7 @@ const UserProfile = () => {
     name: "",
     email: "",
     school: "",
+    cccd: "",
   });
   const [passwordForm, setPasswordForm] = useState({
     oldPassword: "",
@@ -37,21 +38,28 @@ const UserProfile = () => {
           name: parsedUser.name || "",
           email: parsedUser.email || "",
           school: parsedUser.school || "",
+          cccd: parsedUser.cccd || "",
         });
       } catch (error) {
-        console.error("Lỗi parse user từ localStorage trong UserProfile:", error);
+        console.error(
+          "Lỗi parse user từ localStorage trong UserProfile:",
+          error
+        );
         localStorage.removeItem("user"); // Xóa nếu lỗi
         setCurrentUser(null); // Đảm bảo state được cập nhật
-        navigate("/login");     // Điều hướng về login
+        navigate("/login"); // Điều hướng về login
       }
     } else {
-      console.log("[UserProfile] Không tìm thấy user trong localStorage, điều hướng về /login");
+      console.log(
+        "[UserProfile] Không tìm thấy user trong localStorage, điều hướng về /login"
+      );
       navigate("/login"); // Điều hướng về login nếu không có user
     }
   }, [navigate]); // Thêm navigate vào dependency array để tránh warning
 
   const handleImageUpload = async (e) => {
-    if (!currentUser) { // Kiểm tra currentUser
+    if (!currentUser) {
+      // Kiểm tra currentUser
       toast.error("Vui lòng đăng nhập lại để thực hiện thao tác này.");
       return;
     }
@@ -85,14 +93,15 @@ const UserProfile = () => {
   const handleUpdateUser = async (e) => {
     e.preventDefault();
     if (!currentUser) {
-        toast.error("Vui lòng đăng nhập lại để thực hiện thao tác này.");
-        return;
+      toast.error("Vui lòng đăng nhập lại để thực hiện thao tác này.");
+      return;
     }
     // Luôn lấy giá trị mới nhất từ state editUser, fallback về currentUser nếu editUser rỗng
     const finalUpdate = {
       name: editUser.name.trim() || currentUser.name,
       email: editUser.email.trim() || currentUser.email,
       school: editUser.school.trim() || currentUser.school,
+      cccd: editUser.cccd.trim() || currentUser.cccd,
     };
 
     try {
@@ -115,8 +124,8 @@ const UserProfile = () => {
 
   const handleChangePassword = async () => {
     if (!currentUser) {
-        toast.error("Vui lòng đăng nhập lại để thực hiện thao tác này.");
-        return;
+      toast.error("Vui lòng đăng nhập lại để thực hiện thao tác này.");
+      return;
     }
     const { oldPassword, newPassword, confirmPassword } = passwordForm;
 
@@ -138,7 +147,11 @@ const UserProfile = () => {
       });
       toast.success("Đổi mật khẩu thành công!");
       setShowChangePassword(false);
-      setPasswordForm({ oldPassword: "", newPassword: "", confirmPassword: "" });
+      setPasswordForm({
+        oldPassword: "",
+        newPassword: "",
+        confirmPassword: "",
+      });
     } catch (err) {
       console.error(err);
       toast.error(err.response?.data?.message || "Đổi mật khẩu thất bại.");
@@ -150,12 +163,20 @@ const UserProfile = () => {
     return (
       <>
         <Navbar2 /> {/* Vẫn hiển thị Navbar để có thể logout nếu bị kẹt */}
-        <div className="main-wrapper" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: 'calc(100vh - 120px)'}}>
+        <div
+          className="main-wrapper"
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            minHeight: "calc(100vh - 120px)",
+          }}
+        >
           <p>Đang tải thông tin người dùng...</p>
         </div>
         <Footer />
       </>
-    ); 
+    );
   }
 
   return (
@@ -173,6 +194,7 @@ const UserProfile = () => {
               <div className="profile-basic-info">
                 <h2>{currentUser.name}</h2>
                 <p>{currentUser.email}</p>
+                <p>{currentUser.cccd}</p>
                 <p>{currentUser.school || "Chưa có thông tin trường học"}</p>
               </div>
             </div>
@@ -188,6 +210,10 @@ const UserProfile = () => {
               <div className="field-value">{currentUser.email}</div>
             </div>
             <div className="profile-field">
+              <div className="field-label">CCCD</div>
+              <div className="field-value">{currentUser.cccd}</div>
+            </div>
+            <div className="profile-field">
               <div className="field-label">Trường</div>
               <div className="field-value">
                 {currentUser.school || "Chưa có thông tin"}
@@ -199,10 +225,11 @@ const UserProfile = () => {
                 className="profile-button"
                 onClick={() => {
                   // Khi mở popup, gán giá trị từ currentUser (state) cho editUser
-                  setEditUser({ 
-                    name: currentUser.name || "", 
-                    email: currentUser.email || "", 
-                    school: currentUser.school || "" 
+                  setEditUser({
+                    name: currentUser.name || "",
+                    email: currentUser.email || "",
+                    school: currentUser.school || "",
+                    cccd: currentUser.cccd || "",
                   });
                   setShowEditInfo(true);
                 }}
@@ -242,29 +269,52 @@ const UserProfile = () => {
             <h3 className="popup-title">Chỉnh sửa thông tin</h3>
             <form className="popup-form" onSubmit={handleUpdateUser}>
               <input
-                className="popup-input-field" 
+                className="popup-input-field"
                 type="text"
                 placeholder="Họ tên"
                 value={editUser.name}
-                onChange={(e) => setEditUser({ ...editUser, name: e.target.value })}
+                onChange={(e) =>
+                  setEditUser({ ...editUser, name: e.target.value })
+                }
               />
               <input
                 className="popup-input-field"
                 type="email"
                 placeholder="Email"
                 value={editUser.email}
-                onChange={(e) => setEditUser({ ...editUser, email: e.target.value })}
+                onChange={(e) =>
+                  setEditUser({ ...editUser, email: e.target.value })
+                }
+              />
+              <input
+                className="popup-input-field"
+                type="number"
+                placeholder="Căn cước công dân"
+                value={editUser.cccd}
+                onChange={(e) =>
+                  setEditUser({ ...editUser, cccd: e.target.value })
+                }
               />
               <input
                 className="popup-input-field"
                 type="text"
                 placeholder="Trường"
                 value={editUser.school}
-                onChange={(e) => setEditUser({ ...editUser, school: e.target.value })}
+                onChange={(e) =>
+                  setEditUser({ ...editUser, school: e.target.value })
+                }
               />
               <div className="popup-buttons">
-                <button type="submit" className="popup-button save">Cập nhật</button>
-                <button type="button" className="popup-button cancel" onClick={() => setShowEditInfo(false)}>Hủy</button>
+                <button type="submit" className="popup-button save">
+                  Cập nhật
+                </button>
+                <button
+                  type="button"
+                  className="popup-button cancel"
+                  onClick={() => setShowEditInfo(false)}
+                >
+                  Hủy
+                </button>
               </div>
             </form>
           </div>
@@ -275,31 +325,60 @@ const UserProfile = () => {
         <div className="popup-overlay">
           <div className="popup-content">
             <h3 className="popup-title">Đổi mật khẩu</h3>
-            <form className="popup-form" onSubmit={(e) => { e.preventDefault(); handleChangePassword(); }}>
+            <form
+              className="popup-form"
+              onSubmit={(e) => {
+                e.preventDefault();
+                handleChangePassword();
+              }}
+            >
               <input
                 className="popup-input-field"
                 type="password"
                 placeholder="Mật khẩu cũ"
                 value={passwordForm.oldPassword}
-                onChange={(e) => setPasswordForm({ ...passwordForm, oldPassword: e.target.value })}
+                onChange={(e) =>
+                  setPasswordForm({
+                    ...passwordForm,
+                    oldPassword: e.target.value,
+                  })
+                }
               />
               <input
                 className="popup-input-field"
                 type="password"
                 placeholder="Mật khẩu mới"
                 value={passwordForm.newPassword}
-                onChange={(e) => setPasswordForm({ ...passwordForm, newPassword: e.target.value })}
+                onChange={(e) =>
+                  setPasswordForm({
+                    ...passwordForm,
+                    newPassword: e.target.value,
+                  })
+                }
               />
               <input
                 className="popup-input-field"
                 type="password"
                 placeholder="Nhập lại mật khẩu mới"
                 value={passwordForm.confirmPassword}
-                onChange={(e) => setPasswordForm({ ...passwordForm, confirmPassword: e.target.value })}
+                onChange={(e) =>
+                  setPasswordForm({
+                    ...passwordForm,
+                    confirmPassword: e.target.value,
+                  })
+                }
               />
               <div className="popup-buttons">
-                <button type="submit" className="popup-button save">Cập nhật</button>
-                <button type="button" className="popup-button cancel" onClick={() => setShowChangePassword(false)}>Hủy</button>
+                <button type="submit" className="popup-button save">
+                  Cập nhật
+                </button>
+                <button
+                  type="button"
+                  className="popup-button cancel"
+                  onClick={() => setShowChangePassword(false)}
+                >
+                  Hủy
+                </button>
               </div>
             </form>
           </div>

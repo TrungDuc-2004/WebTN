@@ -12,6 +12,7 @@ const Register = () => {
   const users = {
     name: "",
     email: "",
+    cccd: "",
     password: "",
     passwordSecurity: "",
     role: role,
@@ -27,9 +28,9 @@ const Register = () => {
   const handleRegister = async (e) => {
     e.preventDefault();
 
-    const { name, email, password, passwordSecurity } = user;
+    const { name, email, cccd, password, passwordSecurity } = user;
 
-    if (!name || !email || !password || !passwordSecurity) {
+    if (!name || !email || !password || !passwordSecurity || !cccd) {
       toast.error("Vui lòng điền đầy đủ thông tin.", {
         position: "top-center",
         autoClose: 2000,
@@ -58,6 +59,7 @@ const Register = () => {
       await axios.post("http://localhost:3000/api/user", {
         name: user.name,
         email: user.email,
+        cccd: user.cccd,
         password: user.password,
         role: user.role,
       });
@@ -106,7 +108,14 @@ const Register = () => {
             placeholder="Nhập email"
           />
         </div>
-
+        <div className="input-group-r">
+          <input
+            onChange={inputHandler}
+            name="cccd"
+            type="number"
+            placeholder="Nhập căn cước công dân"
+          />
+        </div>
         <div className="input-group-r">
           <input
             onChange={inputHandler}
@@ -134,7 +143,7 @@ const Register = () => {
           </p>
         </div>
       </div>
-      
+
       <ToastContainer
         position="top-center"
         autoClose={2000}
