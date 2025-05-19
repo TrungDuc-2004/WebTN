@@ -14,7 +14,7 @@
   display: grid;
   grid-template-columns: 300px 1fr;
   gap: 40px;
-  background: white;
+  background: #F8F8F8;
   border-radius: 16px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
   padding: 40px;
@@ -29,7 +29,7 @@
   left: 0;
   width: 300px;
   height: 100%;
-  background: linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%);
+  background: #F8F8F8;
   opacity: 0.1;
   z-index: 0;
 }
@@ -43,7 +43,7 @@
   align-items: center;
   padding: 30px 20px;
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.9);
+  background:#F0FFF0;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
 }
 
@@ -76,7 +76,7 @@
 
 .profile-basic-infoGV p {
   font-size: 15px;
-  color: #64748b;
+  color: #022E40;
   margin: 5px 0;
   display: flex;
   align-items: center;
@@ -85,11 +85,11 @@
 }
 
 .profile-basic-infoGV p::before {
-  content: "";
+  /* content: ""; */
   display: inline-block;
   width: 4px;
   height: 4px;
-  background: #94a3b8;
+  background: #9CD3D9;
   border-radius: 50%;
 }
 
@@ -114,14 +114,14 @@
 
 .field-labelGV {
   font-size: 15px;
-  color: #64748b;
+  color: #022E40;
   font-weight: 600;
 }
 
 .field-valueGV {
   font-size: 16px;
-  color: #334155;
-  background: #f8fafc;
+  color: #022E40;
+  background: #F0FFF0;
   padding: 12px 18px;
   border-radius: 8px;
   border: 1px solid #e2e8f0;
@@ -129,7 +129,7 @@
 }
 
 .field-valueGV:hover {
-  background: white;
+  background: #C3D4FD;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
@@ -143,13 +143,13 @@
 
 .profile-buttonGV {
   padding: 12px 24px;
-  background: white;
+  background: #E8F1FD;
   border: none;
   border-radius: 8px;
   cursor: pointer;
   font-size: 14px;
   font-weight: 600;
-  color: #4f46e5;
+  color: #022E40;
   box-shadow: 0 2px 6px rgba(79, 70, 229, 0.15);
   transition: all 0.3s ease;
   display: flex;
@@ -158,10 +158,10 @@
 }
 
 .profile-buttonGV:hover {
-  background: #4f46e5;
-  color: white;
+  background: #022E40;
+  color: #FEC2B2;
   transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(79, 70, 229, 0.3);
+  box-shadow: 0 5px 15px #9CD3D9;
 }
 
 /* Popups */
