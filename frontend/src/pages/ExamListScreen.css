@@ -204,6 +204,7 @@ body {
   font-size: 1.15rem;
   padding: 16px 34px;
   border-radius: 14px;
+  min-height: 240px;
 }
 
 .create-button:hover {
@@ -299,4 +300,24 @@ body {
 }
 .exam-item:nth-child(5) {
   animation-delay: 0.7s;
+}
+
+/* Button clipboard */
+.copy-code-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-left: 8px;
+  font-size: 1rem;
+  color: var(--primary-color);
+  padding: 0;
+  outline: none; /* bỏ viền khi focus */
+}
+
+.copy-code-button:hover {
+  color: var(--secondary-color);
+}
+
+.copy-code-button:focus {
+  outline: none; /* bỏ viền khi nhấn hoặc tab focus */
 }

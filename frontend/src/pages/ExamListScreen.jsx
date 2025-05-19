@@ -57,8 +57,8 @@ const ExamListScreen = () => {
       <div>
         <p>Bạn có chắc muốn xoá bài kiểm tra này?</p>
         <div className="confirm-dialog-buttons">
-          <button 
-            className="confirm-button" 
+          <button
+            className="confirm-button"
             onClick={() => {
               toast.dismiss();
               confirmDelete(examId);
@@ -66,10 +66,7 @@ const ExamListScreen = () => {
           >
             Xác nhận
           </button>
-          <button 
-            className="cancel-button" 
-            onClick={() => toast.dismiss()}
-          >
+          <button className="cancel-button" onClick={() => toast.dismiss()}>
             Hủy
           </button>
         </div>
@@ -108,16 +105,33 @@ const ExamListScreen = () => {
         <div className="exam-list">
           {exams.map((exam) => (
             <div key={exam._id} className="exam-item">
-              <div 
-                className="exam-info" 
+              <div
+                className="exam-info"
                 onClick={() => handleExamClick(exam._id)}
               >
                 <strong>{exam.title}</strong>
-                <p>Mã bài kiểm tra: {exam.code}</p>
+                <p>
+                  CODE: {exam.code}{" "}
+                  <button
+                    className="copy-code-button"
+                    onClick={(e) => {
+                      e.stopPropagation(); 
+                      navigator.clipboard
+                        .writeText(exam.code)
+                        .then(() =>
+                          toast.success("Đã sao chép mã bài kiểm tra")
+                        )
+                        .catch(() => toast.error("Sao chép thất bại"));
+                    }}
+                    title="Sao chép mã"
+                  >
+                    📋
+                  </button>
+                </p>
                 <p>Thời gian: {exam.duration} phút</p>
               </div>
-              <button 
-                className="delete-button" 
+              <button
+                className="delete-button"
                 onClick={(e) => {
                   e.stopPropagation();
                   handleDelete(exam._id);
@@ -127,10 +141,7 @@ const ExamListScreen = () => {
               </button>
             </div>
           ))}
-          <button 
-            className="create-button" 
-            onClick={handleCreateTestClick}
-          >
+          <button className="create-button" onClick={handleCreateTestClick}>
             Tạo bài kiểm tra
           </button>
         </div>
