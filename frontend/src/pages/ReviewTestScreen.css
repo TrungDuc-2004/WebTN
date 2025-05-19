@@ -238,7 +238,7 @@
 }
 
 .answer-option:hover {
-  background-color: var(--secondary-color);
+  background-color: #C3D4FD;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 

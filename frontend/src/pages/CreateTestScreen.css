@@ -1,5 +1,5 @@
 :root {
-  --primary-color: #2b7a4b;
+  --primary-color: #022E40;
   --primary-dark: #1e5639;
   --primary-light: #a8d8b9;
   --accent-color: #f39c12;
@@ -20,7 +20,7 @@
 }
 
 .create-test-container {
-  background-color: var(--light-bg);
+  background-color: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #9CD3D9 100%);
   min-height: calc(100vh - 120px);
   display: flex;
   flex-direction: column;
@@ -39,10 +39,11 @@
 }
 
 .test-name {
+  background-color: #FEC2B2;
   width: 100%;
   padding: 12px 15px;
   font-size: 18px;
-  border: 2px solid var(--border-color);
+  border: 2.5px solid var(--border-color);
   border-radius: 8px;
   margin-bottom: 20px;
   transition: border-color 0.3s ease;
@@ -50,7 +51,11 @@
 
 .test-name:focus {
   outline: none;
-  border-color: var(--primary-color);
+  border-color: #022E40;
+}
+
+.test-name::placeholder {
+  color: #022E40; 
 }
 
 .test-stats {
@@ -66,14 +71,15 @@
 
 .time-setting label {
   font-size: 14px;
-  color: var(--text-secondary);
+  color: #022E40;
   margin-bottom: 5px;
   font-weight: 500;
 }
 
 .time-setting input {
+  color: #022E40;
   padding: 10px 12px;
-  border: 2px solid var(--border-color);
+  border: 2px solid #FEC2B2;
   border-radius: 6px;
   font-size: 14px;
   transition: border-color 0.3s ease;
@@ -81,17 +87,18 @@
 
 .time-setting input:focus {
   outline: none;
-  border-color: var(--primary-color);
+  border-color: #022E40;
 }
 
 .total-score {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--primary-light);
-  color: var(--primary-dark);
+  background-color: #F0FFF0;
+  color: #022E40;
   padding: 10px;
   border-radius: 6px;
+  border: 2px solid #022E40;
   font-weight: 600;
 }
 
@@ -103,13 +110,13 @@
   width: 100%;
   max-width: 900px;
   box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
-  border-left: 4px solid var(--primary-color);
+  border-left: 4px solid #022E40;
 }
 
 .question-title {
   font-size: 16px;
   font-weight: 600;
-  color: var(--primary-color);
+  color: #022E40;
   margin-bottom: 15px;
   display: flex;
   align-items: center;
@@ -122,26 +129,31 @@
   justify-content: center;
   width: 24px;
   height: 24px;
-  background-color: var(--primary-color);
-  color: var(--white);
+  background-color: #FEC2B2;
+  color: #022E40;
   border-radius: 50%;
   font-size: 14px;
   margin-right: 10px;
 }
 
 .question-input {
+  color: #022E40;
   width: 100%;
   padding: 12px 15px;
-  border: 2px solid var(--border-color);
+  border: 2.5px solid #FEC2B2;
   border-radius: 8px;
   font-size: 15px;
   margin-bottom: 20px;
   transition: border-color 0.3s ease;
 }
 
+.question-input::placeholder {
+  color: #022E40; 
+}
+
 .question-input:focus {
   outline: none;
-  border-color: var(--primary-color);
+  border-color: #022E40;
 }
 
 .answers-group {
@@ -157,7 +169,7 @@
   gap: 10px;
   padding: 12px;
   border-radius: 6px;
-  background-color: var(--light-bg);
+  background-color: #F0FFF0;
   transition: transform 0.2s ease;
 }
 
@@ -169,27 +181,40 @@
   appearance: none;
   width: 18px;
   height: 18px;
-  border: 2px solid var(--border-color);
+  border: 2.5px solid;
   border-radius: 50%;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
+.answer-option input[type="radio"]{
+  border-color: #FEC2B2;
+}
+
 .answer-option input[type="radio"]:checked {
-  border-color: var(--primary-color);
-  background-color: var(--primary-color);
+  border-color: #022E40;
+  background-color: #FEC2B2;
 }
 
 .label {
   font-weight: 600;
-  color: var(--primary-dark);
+  color: #022E40;
   min-width: 20px;
 }
 
 .answer-input {
   flex: 1;
   padding: 8px 12px;
-  border: 1px solid var(--border-color);
+  border: 2px solid #FEC2B2;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: border-color 0.3s ease;
+}
+
+.answer-input:hover {
+  flex: 1;
+  padding: 8px 12px;
+  border: 2px solid #022E40;
   border-radius: 4px;
   font-size: 14px;
   transition: border-color 0.3s ease;
@@ -197,7 +222,10 @@
 
 .answer-input:focus {
   outline: none;
-  border-color: var(--primary-color);
+}
+
+.answer-input::placeholder {
+  color: #022E40;
 }
 
 .score-time {
@@ -213,22 +241,23 @@
   gap: 8px;
   font-size: 14px;
   font-weight: 500;
-  color: var(--text-secondary);
+  color: #022E40;
 }
 
 .score-time select {
   padding: 8px 12px;
-  border: 2px solid var(--border-color);
+  border: 2px solid #FEC2B2;
   border-radius: 6px;
   font-size: 14px;
-  background-color: var(--white);
+  background-color: #F0FFF0;
+  color: #022E40;
   cursor: pointer;
   transition: border-color 0.3s ease;
 }
 
 .score-time select:focus {
   outline: none;
-  border-color: var(--primary-color);
+  border-color: #022E40;
 }
 
 .actions {
@@ -255,26 +284,27 @@
 
 .btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .add-btn {
   background-color: var(--white);
-  color: var(--primary-color);
-  border: 2px solid var(--primary-color);
+  color: #022E40;
+  border: 2.5px solid #FEC2B2;
 }
 
 .add-btn:hover {
-  background-color: var(--primary-light);
+  background-color: white;
+  border-color: #022E40;
 }
 
 .create-btn {
-  background-color: var(--primary-color);
-  color: var(--white);
+  background-color: #022E40;
+  color: #FEC2B2;
 }
 
 .create-btn:hover {
-  background-color: var(--primary-dark);
+  background-color: #FEC2B2;
+  color: #022E40;
 }
 
 /* Toast styles */
