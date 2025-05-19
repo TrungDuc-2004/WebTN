@@ -11,7 +11,7 @@ const UserProfileGV = () => {
   const [showEditInfo, setShowEditInfo] = useState(false);
   const [showChangePassword, setShowChangePassword] = useState(false);
   const navigate = useNavigate();
-
+  
   const [user, setUser] = useState(null);
   const [editUser, setEditUser] = useState({
     name: "",
@@ -34,6 +34,7 @@ const UserProfileGV = () => {
     }
   }, []);
 
+  const teacherId = user?._id;
   const handleImageUpload = async (e) => {
     const file = e.target.files[0];
     if (!file || !file.type.startsWith("image/")) return;
@@ -188,6 +189,14 @@ const UserProfileGV = () => {
             </div>
 
             <div className="profile-actionsGV">
+              <button
+                className="back-buttonGV"
+                onClick={() =>
+                  navigate("/teacher-dashboard", { state: { teacherId } })
+                }
+              >
+                ← Quay lại màn hình chính
+              </button>
               <button
                 className="profile-buttonGV"
                 onClick={() => {

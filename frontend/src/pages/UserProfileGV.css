@@ -348,3 +348,28 @@
     gap: 8px;
   }
 }
+
+/* Back Button */
+
+.back-buttonGV {
+  padding: 12px 24px;
+  background: #E8F1FD;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  color: #022E40;
+  box-shadow: 0 2px 6px rgba(79, 70, 229, 0.15);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.back-buttonGV:hover {
+  background: #022E40;
+  color: #FEC2B2;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px #9CD3D9;
+}

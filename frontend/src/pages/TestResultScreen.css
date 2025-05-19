@@ -291,3 +291,21 @@
     flex-direction: column;
   }
 }
+
+/* Button Back */
+/* Back Button */.back-button {
+  margin: 10px auto 20px;
+  display: block;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 10px 24px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+  background-color: var(--primary-dark);
+}

@@ -48,7 +48,7 @@ const ExamListScreen = () => {
     toast.info("Đang mở bài kiểm tra...", {
       position: "top-center",
       autoClose: 1000,
-      onClose: () => navigate(`/review-test/${examId}`),
+      onClose: () => navigate(`/review-test/${examId}`, { state: { teacherId } }),
     });
   };
 

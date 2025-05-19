@@ -73,7 +73,7 @@
 
 .test-header-container {
   max-width: 1000px;
-  margin: 0 auto 30px;
+  margin: 40px auto 30px;
 }
 
 .test-header {
@@ -94,17 +94,24 @@
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
+  justify-content: flex-end; /* hoặc center, tùy layout */
+  align-items: center;
 }
 
 .test-meta {
   display: flex;
   align-items: center;
   gap: 8px;
+  padding: 8px 16px;
   font-size: 15px;
   color: var(--text-medium);
-  padding: 8px 16px;
   background-color: var(--primary-light);
   border-radius: 20px;
+
+  min-width: 170px;  /* Chiều rộng tối thiểu */
+  height: 40px;      /* Chiều cao cố định */
+  box-sizing: border-box;
+  justify-content: center; /* Căn giữa ngang */
 }
 
 .test-meta.highlight {
@@ -339,4 +346,21 @@
   .answers-container {
     grid-template-columns: 1fr;
   }
+}
+
+/* Back Button */.back-button {
+  margin: 10px auto 20px;
+  display: block;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 10px 24px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+  background-color: var(--primary-dark);
 }

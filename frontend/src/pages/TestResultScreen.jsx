@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useParams, NavLink } from "react-router-dom";
+import { useParams, NavLink, useLocation } from "react-router-dom";
 import axios from "axios";
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import ChartDataLabels from "chartjs-plugin-datalabels";
-
+import { useNavigate } from "react-router-dom";
 import "./TestResultScreen.css";
 import NavbarGV from "./NavbarGV";
 import Footer from "./Footer";
@@ -14,7 +14,11 @@ ChartJS.register(ArcElement, Tooltip, Legend, ChartDataLabels);
 const TestResultScreen = () => {
   const { examId } = useParams();
   const [exam, setExam] = useState(null);
+  const location = useLocation();
+  const teacherId = location.state?.teacherId;
   const [loading, setLoading] = useState(true);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchExam = async () => {
@@ -49,6 +53,11 @@ const TestResultScreen = () => {
       </div>
     );
   }
+
+  const totalPossibleScore = exam.questions.reduce(
+    (sum, q) => sum + q.score,
+    0
+  );
 
   // Xử lý dữ liệu học sinh
   const studentResults = exam.results || [];
@@ -154,15 +163,19 @@ const TestResultScreen = () => {
         <div className="tab-container">
           <div className="tab-nav">
             <NavLink
-              to={`/review-test/${examId}`}
-              className={({ isActive }) => `tab-item ${isActive ? "active" : ""}`}
+              to={`/review-test/${examId}`} state={{ teacherId }}
+              className={({ isActive }) =>
+                `tab-item ${isActive ? "active" : ""}`
+              }
             >
               <span className="tab-icon">📝</span>
               <span className="tab-text">Câu hỏi</span>
             </NavLink>
             <NavLink
-              to={`/resulttest/${examId}`}
-              className={({ isActive }) => `tab-item ${isActive ? "active" : ""}`}
+              to={`/resulttest/${examId}`} state={{ teacherId }}
+              className={({ isActive }) =>
+                `tab-item ${isActive ? "active" : ""}`
+              }
             >
               <span className="tab-icon">📊</span>
               <span className="tab-text">Kết quả</span>
@@ -181,12 +194,14 @@ const TestResultScreen = () => {
                     <span className="student-name">{student.name}</span>
                   </div>
                   <div className="student-details">
-                    <span className="student-time">{formatTime(student.timeSpent)}</span>
+                    <span className="student-time">
+                      {formatTime(student.timeSpent)}
+                    </span>
                     <span
                       className={`score-badge ${
-                        student.score >= 8
+                        student.score >= totalPossibleScore * 0.8
                           ? "high-score"
-                          : student.score >= 5
+                          : student.score >= totalPossibleScore * 0.5
                           ? "medium-score"
                           : "low-score"
                       }`}
@@ -206,6 +221,14 @@ const TestResultScreen = () => {
             </div>
           </div>
         </div>
+        <button
+          className="back-button"
+          onClick={() =>
+            navigate("/teacher-dashboard", { state: { teacherId } })
+          }
+        >
+          ← Quay lại màn hình chính
+        </button>
       </div>
 
       <Footer />

@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { useParams, NavLink } from "react-router-dom";
+import { useParams, NavLink, useLocation } from "react-router-dom";
 import axios from "axios";
 import "./ReviewTestScreen.css";
 import NavbarGV from "./NavbarGV";
 import Footer from "./Footer";
+import { useNavigate } from "react-router-dom";
 
 const ReviewTestScreen = () => {
   const { examId } = useParams();
   const [exam, setExam] = useState(null);
   const [loading, setLoading] = useState(true);
+  const location = useLocation();
+  const teacherId = location.state?.teacherId;
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchExam = async () => {
@@ -54,7 +58,27 @@ const ReviewTestScreen = () => {
             <div className="test-meta-container">
               <div className="test-meta">
                 <span className="meta-icon">📅</span>
-                <span>{new Date(exam.createdAt).toLocaleDateString("vi-VN")}</span>
+                <span>
+                  {new Date(exam.createdAt).toLocaleDateString("vi-VN")}
+                </span>
+              </div>
+              <div className="test-meta">
+                <span className="meta-icon">🚦</span>
+                <span>
+                  Bắt đầu:{" "}
+                  {exam.startTime
+                    ? new Date(exam.startTime).toLocaleString("vi-VN")
+                    : "Chưa có"}
+                </span>
+              </div>
+              <div className="test-meta">
+                <span className="meta-icon">🏁</span>
+                <span>
+                  Kết thúc:{" "}
+                  {exam.endTime
+                    ? new Date(exam.endTime).toLocaleString("vi-VN")
+                    : "Chưa có"}
+                </span>
               </div>
               <div className="test-meta">
                 <span className="meta-icon">⏱️</span>
@@ -62,7 +86,10 @@ const ReviewTestScreen = () => {
               </div>
               <div className="test-meta highlight">
                 <span className="meta-icon">⭐</span>
-                <span>Tổng điểm: {exam.questions.reduce((sum, q) => sum + q.score, 0)}</span>
+                <span>
+                  Tổng điểm:{" "}
+                  {exam.questions.reduce((sum, q) => sum + q.score, 0)}
+                </span>
               </div>
             </div>
           </div>
@@ -72,14 +99,20 @@ const ReviewTestScreen = () => {
           <div className="tab-nav">
             <NavLink
               to={`/review-test/${examId}`}
-              className={({ isActive }) => `tab-item ${isActive ? "active" : ""}`}
+              state={{ teacherId }}
+              className={({ isActive }) =>
+                `tab-item ${isActive ? "active" : ""}`
+              }
             >
               <span className="tab-icon">📝</span>
               <span className="tab-text">Câu hỏi</span>
             </NavLink>
             <NavLink
               to={`/resulttest/${examId}`}
-              className={({ isActive }) => `tab-item ${isActive ? "active" : ""}`}
+              state={{ teacherId }}
+              className={({ isActive }) =>
+                `tab-item ${isActive ? "active" : ""}`
+              }
             >
               <span className="tab-icon">📊</span>
               <span className="tab-text">Kết quả</span>
@@ -94,14 +127,18 @@ const ReviewTestScreen = () => {
                 <div className="question-number">Câu {index + 1}</div>
                 <div className="question-score">{q.score} điểm</div>
               </div>
-              
+
               <div className="question-content">{q.content}</div>
-              
+
               <div className="answers-container">
                 {q.options.map((option, i) => (
-                  <div 
+                  <div
                     key={`${q._id}-${i}`}
-                    className={`answer-option ${q.correctAnswer === String.fromCharCode(65 + i) ? "correct" : ""}`}
+                    className={`answer-option ${
+                      q.correctAnswer === String.fromCharCode(65 + i)
+                        ? "correct"
+                        : ""
+                    }`}
                   >
                     <div className="answer-radio">
                       <div className="radio-circle">
@@ -109,7 +146,9 @@ const ReviewTestScreen = () => {
                           <div className="radio-dot"></div>
                         )}
                       </div>
-                      <span className="answer-letter">{String.fromCharCode(65 + i)}</span>
+                      <span className="answer-letter">
+                        {String.fromCharCode(65 + i)}
+                      </span>
                     </div>
                     <div className="answer-text">{option}</div>
                   </div>
@@ -118,6 +157,14 @@ const ReviewTestScreen = () => {
             </div>
           ))}
         </div>
+        <button
+          className="back-button"
+          onClick={() =>
+            navigate("/teacher-dashboard", { state: { teacherId } })
+          }
+        >
+          ← Quay lại màn hình chính
+        </button>
       </div>
       <Footer />
     </>
