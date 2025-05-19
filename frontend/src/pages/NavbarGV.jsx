@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom"; 
 import "./NavbarGV.css";                       
-import userGVIConDefault from "../assets/userGV.png"; 
+import userGVIConDefault from "../assets/user.png"; 
 import logoutIcon from "../assets/logout.png";     
 import { toast } from 'react-toastify'; 
 

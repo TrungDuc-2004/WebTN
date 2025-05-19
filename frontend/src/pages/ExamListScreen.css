@@ -15,7 +15,7 @@
 /* Tổng thể nền và font */
 body {
   font-family: var(--font-family);
-  background: linear-gradient(135deg, var(--light-bg) 0%, #F9F5E9 100%);
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #9CD3D9 100%);
   color: var(--text-dark);
   margin: 0;
   padding: 0;
@@ -198,8 +198,8 @@ body {
 }
 
 .create-button {
-  background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-  color: white;
+  background: #FEC2B2;
+  color: #022E40;
   box-shadow: 0 8px 16px rgba(156, 211, 217, 0.7);
   font-size: 1.15rem;
   padding: 16px 34px;
@@ -207,7 +207,8 @@ body {
 }
 
 .create-button:hover {
-  background: linear-gradient(135deg, #011a24, #75b8c8);
+  background: #022E40;
+  color: #FEC2B2;
   box-shadow: 0 12px 28px rgba(117, 184, 200, 0.9);
   transform: translateY(-5px);
 }
