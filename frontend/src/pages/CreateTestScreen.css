@@ -79,7 +79,7 @@
 .time-setting input {
   color: #022E40;
   padding: 10px 12px;
-  border: 2px solid #FEC2B2;
+  border: 2px solid #022E40;
   border-radius: 6px;
   font-size: 14px;
   transition: border-color 0.3s ease;
@@ -140,7 +140,7 @@
   color: #022E40;
   width: 100%;
   padding: 12px 15px;
-  border: 2.5px solid #FEC2B2;
+  border: 2.5px solid #022E40;
   border-radius: 8px;
   font-size: 15px;
   margin-bottom: 20px;
@@ -188,7 +188,7 @@
 }
 
 .answer-option input[type="radio"]{
-  border-color: #FEC2B2;
+  border-color: #022E40;
 }
 
 .answer-option input[type="radio"]:checked {
@@ -205,7 +205,7 @@
 .answer-input {
   flex: 1;
   padding: 8px 12px;
-  border: 2px solid #FEC2B2;
+  border: 2px solid #022E40;
   border-radius: 4px;
   font-size: 14px;
   transition: border-color 0.3s ease;
@@ -246,7 +246,7 @@
 
 .score-time select {
   padding: 8px 12px;
-  border: 2px solid #FEC2B2;
+  border: 2px solid #022E40;
   border-radius: 6px;
   font-size: 14px;
   background-color: #F0FFF0;
