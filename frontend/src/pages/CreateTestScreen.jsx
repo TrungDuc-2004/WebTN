@@ -4,7 +4,13 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import "./CreateTestScreen.css";
-import { FiPlusCircle, FiSave, FiClock, FiStar, FiHelpCircle } from "react-icons/fi";
+import {
+  FiPlusCircle,
+  FiSave,
+  FiClock,
+  FiStar,
+  FiHelpCircle,
+} from "react-icons/fi";
 import NavbarGV from "./NavbarGV";
 import Footer from "./Footer";
 
@@ -222,7 +228,7 @@ const CreateTestScreen = () => {
                     handleQuestionChange(index, "score", e.target.value)
                   }
                 >
-                  {[1, 2, 3, 4, 5].map((s) => (
+                  {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((s) => (
                     <option key={s} value={s}>
                       {s}
                     </option>
@@ -238,7 +244,7 @@ const CreateTestScreen = () => {
             Thêm câu hỏi
           </button>
           <button className="btn create-btn" onClick={handleCreateTest}>
-            Tạo bài KT
+            Tạo bài kiểm tra
           </button>
         </div>
       </div>

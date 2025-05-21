@@ -31,6 +31,7 @@ const StudentHistoryPage = () => {
         const res = await axios.get("http://localhost:3000/api/results", {
           params: { userId: currentUser._id },
         });
+        console.log(res.data);
 
         const data = res.data.map((result) => {
           const totalPossibleScore = result.examId.questions.reduce(
@@ -46,7 +47,7 @@ const StudentHistoryPage = () => {
             totalPossibleScore,
           };
         });
-
+        console.log(data);
         setHistoryEntries(data);
       } catch (err) {
         console.error("Lỗi khi tải lịch sử làm bài:", err);
@@ -57,7 +58,7 @@ const StudentHistoryPage = () => {
     };
 
     fetchHistory();
-  }, []);
+  }, [currentUser._id]);
 
   useEffect(() => {
     const handler = setTimeout(() => {

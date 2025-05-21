@@ -116,7 +116,7 @@ const ExamListScreen = () => {
                     className="copy-code-button"
                     onClick={(e) => {
                       e.stopPropagation(); 
-                      navigator.clipboard
+                      navigator.clipboard // Api web để sao chép vào bộ nhớ tạm máy tính
                         .writeText(exam.code)
                         .then(() =>
                           toast.success("Đã sao chép mã bài kiểm tra")

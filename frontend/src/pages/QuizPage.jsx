@@ -1,7 +1,6 @@
-// frontend/src/pages/QuizPage.jsx
 import React, { useState, useEffect, useRef } from "react";
-import "./QuizPage.css"; // Đảm bảo bạn có file CSS này và import nó
-import Navbar2 from "./Navbar2"; // Giả sử Navbar2.jsx nằm cùng cấp trong src/pages
+import "./QuizPage.css"; 
+import Navbar2 from "./Navbar2"; 
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -9,14 +8,14 @@ import { toast } from "react-toastify";
 const QuizPage = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
-  const exam = state?.exam; // exam object được truyền từ StartPage
-  const userId = state?.userId; // userId được truyền từ StartPage
+  const exam = state?.exam; 
+  const userId = state?.userId; 
 
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedOptionIndex, setSelectedOptionIndex] = useState(null); // Index của đáp án được chọn (0-3)
 
 
-  const [userAnswers, setUserAnswers] = useState([]); // Mảng lưu các câu trả lời của user [{ questionId, selectedOptionValue, isCorrect, scoreAwarded }]
+  const [userAnswers, setUserAnswers] = useState([]); 
 
   // State mới để theo dõi số câu đúng/sai và tiến độ
   const [answeredQuestionsCount, setAnsweredQuestionsCount] = useState(0);
@@ -53,11 +52,11 @@ const QuizPage = () => {
       console.log(userAnswers);
       await axios.post(`http://localhost:3000/api/exam/${exam._id}/results`, {
         userId: userId,
-        examId: exam._id, // Đảm bảo exam._id tồn tại
+        examId: exam._id, 
         score: currentTotalScore,
-        totalScoreFromAPI: maxPossibleScore, // Gửi tổng điểm tối đa
+        totalScoreFromAPI: maxPossibleScore, 
         timeSpent: elapsedTime,
-        answers: userAnswers, // Gửi chi tiết câu trả lời của user
+        answers: userAnswers, 
       });
       toast.success("Nộp bài thành công!");
       navigate("/result", {
@@ -67,7 +66,6 @@ const QuizPage = () => {
           elapsedTime,
           title: exam.title,
           code: exam.code,
-          // bạn có thể truyền userAnswers nếu muốn trang kết quả hiển thị chi tiết
         },
       });
     } catch (error) {
@@ -109,8 +107,7 @@ const QuizPage = () => {
       toast.warn("Hết giờ làm bài! Bài của bạn sẽ được nộp tự động.");
       submitExamResults();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [remainingTime, exam]); // Chỉ phụ thuộc remainingTime và exam để tránh re-run không cần thiết
+  }, [remainingTime, exam]);
 
   const handleOptionSelect = (selectedIndex) => {
     if (selectedOptionIndex !== null || !currentQuestion) return; // Không cho chọn lại nếu đã chọn hoặc không có câu hỏi
@@ -138,7 +135,7 @@ const QuizPage = () => {
       ...prevAnswers,
       {
         questionId: currentQuestion._id, // Hoặc ID của câu hỏi
-        selectedOption: selectedOptionLetter, // Lưu index đáp án đã chọn
+        selectedOption: selectedOptionLetter, // Lưu đáp án đã chọn
         isCorrect: isCorrect,
       },
     ]);

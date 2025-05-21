@@ -131,6 +131,7 @@ const ReviewTestScreen = () => {
               <div className="question-content">{q.content}</div>
 
               <div className="answers-container">
+                {/* Chạy từ 0-3  */}
                 {q.options.map((option, i) => (
                   <div
                     key={`${q._id}-${i}`}
