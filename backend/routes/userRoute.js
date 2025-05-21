@@ -14,9 +14,10 @@ const route = express.Router();
 route.post("/user", createUser);
 route.post("/user/login", userLogin);
 
+// Xử lí upload ảnh vào thư mục đã cấu hình, thông tin file vào req.file cho xử lí tiếp
 route.post(
   "/user/upload-avatar/:email",
-  upload.single("avatar"),
+  upload.single("avatar"), 
   uploadUserAvatar
 );
 

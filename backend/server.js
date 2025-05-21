@@ -15,7 +15,7 @@ app.use(cors());
 app.use("/uploads", express.static("public/uploads"));
 
 connectDb();
-
+    
 app.use("/api", userRoutes);
 app.use("/api", examRoutes);
 app.use("/api", resultRoutes);

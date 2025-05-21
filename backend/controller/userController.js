@@ -86,7 +86,6 @@ const changeUserPassword = async (req, res) => {
 
   try {
     const user = await User.findOne({ email: email.trim() });
-    console.log("chay here");
     if (!user) return res.status(404).json({ message: "User not found" });
 
     if (user.password !== oldPassword) {

@@ -35,8 +35,10 @@ const UserProfileGV = () => {
   }, []);
 
   const teacherId = user?._id;
+  //Xử lí upload ảnh
   const handleImageUpload = async (e) => {
     const file = e.target.files[0];
+    //Kiểm tra phải ảnh không
     if (!file || !file.type.startsWith("image/")) return;
 
     const formData = new FormData();
@@ -69,6 +71,7 @@ const UserProfileGV = () => {
     }
   };
 
+  // Xử lí cập nhật user
   const handleUpdateUser = async (e) => {
     e.preventDefault();
     const finalUpdate = {

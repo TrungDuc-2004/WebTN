@@ -1,20 +1,19 @@
-// frontend/src/pages/UserProfile.jsx
 import React, { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Navbar2 from "./Navbar2"; // Đảm bảo đường dẫn đúng nếu Navbar2 cũng ở src/pages
-import Footer from "./Footer"; // Đảm bảo đường dẫn đúng
-import "./UserProfile.css"; // Đảm bảo đường dẫn đúng
+import Navbar2 from "./Navbar2";
+import Footer from "./Footer";
+import "./UserProfile.css";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import defaultAvatar from "../assets/user.png"; // << IMPORT ẢNH MẶC ĐỊNH
+import defaultAvatar from "../assets/user.png";
 
 const UserProfile = () => {
   const [showEditInfo, setShowEditInfo] = useState(false);
   const [showChangePassword, setShowChangePassword] = useState(false);
   const navigate = useNavigate();
 
-  const [currentUser, setCurrentUser] = useState(null); // Sử dụng state cho user
+  const [currentUser, setCurrentUser] = useState(null);
   const [editUser, setEditUser] = useState({
     name: "",
     email: "",
@@ -33,7 +32,6 @@ const UserProfile = () => {
       try {
         const parsedUser = JSON.parse(storedUser);
         setCurrentUser(parsedUser);
-        // Khởi tạo editUser với giá trị từ currentUser
         setEditUser({
           name: parsedUser.name || "",
           email: parsedUser.email || "",
@@ -45,21 +43,20 @@ const UserProfile = () => {
           "Lỗi parse user từ localStorage trong UserProfile:",
           error
         );
-        localStorage.removeItem("user"); // Xóa nếu lỗi
-        setCurrentUser(null); // Đảm bảo state được cập nhật
-        navigate("/login"); // Điều hướng về login
+        localStorage.removeItem("user");
+        setCurrentUser(null);
+        navigate("/login");
       }
     } else {
       console.log(
         "[UserProfile] Không tìm thấy user trong localStorage, điều hướng về /login"
       );
-      navigate("/login"); // Điều hướng về login nếu không có user
+      navigate("/login");
     }
-  }, [navigate]); // Thêm navigate vào dependency array để tránh warning
+  }, [navigate]);
 
   const handleImageUpload = async (e) => {
     if (!currentUser) {
-      // Kiểm tra currentUser
       toast.error("Vui lòng đăng nhập lại để thực hiện thao tác này.");
       return;
     }
@@ -71,7 +68,7 @@ const UserProfile = () => {
 
     try {
       const res = await axios.post(
-        `http://localhost:3000/api/user/upload-avatar/${currentUser.email}`, // Sử dụng currentUser
+        `http://localhost:3000/api/user/upload-avatar/${currentUser.email}`,
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },
@@ -79,9 +76,9 @@ const UserProfile = () => {
       );
 
       const newImage = res.data.image || res.data.avatarUrl;
-      const updatedUser = { ...currentUser, image: newImage }; // Sử dụng currentUser
+      const updatedUser = { ...currentUser, image: newImage };
 
-      setCurrentUser(updatedUser); // Cập nhật state
+      setCurrentUser(updatedUser);
       localStorage.setItem("user", JSON.stringify(updatedUser));
       toast.success("Cập nhật ảnh đại diện thành công!");
     } catch (err) {
@@ -96,7 +93,6 @@ const UserProfile = () => {
       toast.error("Vui lòng đăng nhập lại để thực hiện thao tác này.");
       return;
     }
-    // Luôn lấy giá trị mới nhất từ state editUser, fallback về currentUser nếu editUser rỗng
     const finalUpdate = {
       name: editUser.name.trim() || currentUser.name,
       email: editUser.email.trim() || currentUser.email,
@@ -106,13 +102,13 @@ const UserProfile = () => {
 
     try {
       await axios.put(
-        `http://localhost:3000/api/user/${currentUser.email}`, // Sử dụng currentUser
+        `http://localhost:3000/api/user/${currentUser.email}`,
         finalUpdate
       );
 
-      const updatedUser = { ...currentUser, ...finalUpdate }; // Sử dụng currentUser
+      const updatedUser = { ...currentUser, ...finalUpdate };
       localStorage.setItem("user", JSON.stringify(updatedUser));
-      setCurrentUser(updatedUser); // Cập nhật state
+      setCurrentUser(updatedUser);
 
       setShowEditInfo(false);
       toast.success("Cập nhật thông tin thành công!");
@@ -141,7 +137,7 @@ const UserProfile = () => {
 
     try {
       await axios.put(`http://localhost:3000/api/user/change-password`, {
-        email: currentUser.email, // Sử dụng currentUser
+        email: currentUser.email,
         oldPassword,
         newPassword,
       });
@@ -158,11 +154,10 @@ const UserProfile = () => {
     }
   };
 
-  // QUAN TRỌNG: Hiển thị loading hoặc không render gì nếu currentUser chưa được load
   if (!currentUser) {
     return (
       <>
-        <Navbar2 /> {/* Vẫn hiển thị Navbar để có thể logout nếu bị kẹt */}
+        <Navbar2 />
         <div
           className="main-wrapper"
           style={{
@@ -187,7 +182,7 @@ const UserProfile = () => {
           <div className="profile-header">
             <div className="profile-avatar-info">
               <img
-                src={currentUser.image || defaultAvatar} // << SỬ DỤNG defaultAvatar đã import
+                src={currentUser.image || defaultAvatar}
                 alt="avatar"
                 className="profile-avatar"
               />
@@ -224,7 +219,6 @@ const UserProfile = () => {
               <button
                 className="profile-button"
                 onClick={() => {
-                  // Khi mở popup, gán giá trị từ currentUser (state) cho editUser
                   setEditUser({
                     name: currentUser.name || "",
                     email: currentUser.email || "",
@@ -384,7 +378,7 @@ const UserProfile = () => {
           </div>
         </div>
       )}
-      {/* ToastContainer đã được đặt ở App.jsx */}
+
       <Footer />
     </>
   );
