@@ -1,7 +1,7 @@
 const Exam = require("../model/examModel.js");
 const Question = require("../model/questionModel.js");
-const Result = require("../model/resultModel.js"); 
-const User = require("../model/userModel.js"); 
+const Result = require("../model/resultModel.js");
+const User = require("../model/userModel.js");
 const mongoose = require("mongoose");
 
 exports.createExam = async (req, res) => {
@@ -19,7 +19,7 @@ exports.createExam = async (req, res) => {
     });
     await newExam.save();
 
-    res.status(201).json(newExam); 
+    res.status(201).json(newExam);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -32,8 +32,8 @@ exports.submitExamResults = async (req, res) => {
     const user = await User.findById(userId);
 
     const newResult = new Result({
-      name: user.name, 
-      userId, 
+      name: user.name,
+      userId,
       examId,
       score,
       timeSpent,
@@ -44,7 +44,7 @@ exports.submitExamResults = async (req, res) => {
 
     const exam = await Exam.findById(examId);
     exam.results.push(newResult._id);
-    exam.studentsCompleted.push(userId); 
+    exam.studentsCompleted.push(userId);
 
     await exam.save();
 
@@ -128,7 +128,7 @@ exports.getAllExams = async (req, res) => {
       return res.status(400).json({ message: "teacherId is required" });
     }
 
-    const exams = await Exam.find({ teacherId }); 
+    const exams = await Exam.find({ teacherId });
     res.status(200).json(exams);
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -138,12 +138,12 @@ exports.getAllExams = async (req, res) => {
 exports.deleteExam = async (req, res) => {
   try {
     const { examId } = req.params;
-    await Exam.findByIdAndDelete(examId); 
-    await Question.deleteMany({ examId }); 
-
+    await Exam.findByIdAndDelete(examId);
+    await Question.deleteMany({ examId });
+    await Result.deleteMany({ examId });
+    
     res.status(200).json({ message: "Xóa bài kiểm tra thành công." });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 };
-

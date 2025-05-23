@@ -33,7 +33,6 @@ const ForgotPasswordScreen = () => {
       setLoading(false);
       setMessage(response.data.message);
 
-      toast.success("Mật khẩu đã được cập nhật thành công!");
     } catch (error) {
       setLoading(false);
       setMessage("Đã xảy ra lỗi, vui lòng thử lại.");

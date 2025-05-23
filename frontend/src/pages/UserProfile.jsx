@@ -80,10 +80,16 @@ const UserProfile = () => {
 
       setCurrentUser(updatedUser);
       localStorage.setItem("user", JSON.stringify(updatedUser));
-      toast.success("Cập nhật ảnh đại diện thành công!");
+      toast.success("Cập nhật ảnh đại diện thành công!", {
+        position: "top-center",
+        autoClose: 2000,
+      });
     } catch (err) {
       console.error(err);
-      toast.error("Lỗi khi tải ảnh đại diện");
+      toast.error("Lỗi khi tải ảnh đại diện", {
+        position: "top-center",
+        autoClose: 2000,
+      });
     }
   };
 
@@ -111,10 +117,16 @@ const UserProfile = () => {
       setCurrentUser(updatedUser);
 
       setShowEditInfo(false);
-      toast.success("Cập nhật thông tin thành công!");
+      toast.success("Cập nhật thông tin thành công!", {
+        position: "top-center",
+        autoClose: 2000,
+      });
     } catch (err) {
       console.error(err);
-      toast.error("Cập nhật thất bại. Vui lòng thử lại.");
+      toast.error("Cập nhật thất bại. Vui lòng thử lại.", {
+        position: "top-center",
+        autoClose: 2000,
+      });
     }
   };
 
@@ -126,12 +138,18 @@ const UserProfile = () => {
     const { oldPassword, newPassword, confirmPassword } = passwordForm;
 
     if (!oldPassword || !newPassword || !confirmPassword) {
-      toast.error("Vui lòng điền đầy đủ thông tin.");
+      toast.error("Vui lòng điền đầy đủ thông tin.", {
+        position: "top-center",
+        autoClose: 2000,
+      });
       return;
     }
 
     if (newPassword !== confirmPassword) {
-      toast.error("Mật khẩu mới không khớp.");
+      toast.error("Mật khẩu mới không khớp.", {
+        position: "top-center",
+        autoClose: 2000,
+      });
       return;
     }
 
@@ -141,7 +159,10 @@ const UserProfile = () => {
         oldPassword,
         newPassword,
       });
-      toast.success("Đổi mật khẩu thành công!");
+      toast.success("Đổi mật khẩu thành công!", {
+        position: "top-center",
+        autoClose: 2000,
+      });
       setShowChangePassword(false);
       setPasswordForm({
         oldPassword: "",
@@ -150,7 +171,10 @@ const UserProfile = () => {
       });
     } catch (err) {
       console.error(err);
-      toast.error(err.response?.data?.message || "Đổi mật khẩu thất bại.");
+      toast.error(err.response?.data?.message || "Đổi mật khẩu thất bại.", {
+        position: "top-center",
+        autoClose: 2000,
+      });
     }
   };
 
