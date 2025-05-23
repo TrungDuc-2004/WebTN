@@ -72,7 +72,6 @@ const StudentHistoryDetailPage = () => {
     );
   }
 
-  // Giải nén dữ liệu trả về theo schema mong muốn
   const { score, timeSpent, answers, examId } = details;
   const { title, code, questions } = examId; // examId đã populate questions
 
@@ -118,7 +117,7 @@ const StudentHistoryDetailPage = () => {
             const studentChoice = userAnswer?.selectedOption || null;
             const isCorrect = userAnswer?.isCorrect || false;
             const correctAnswerLetter = question.correctAnswer;
-            // console.log(correctAnswerLetter);
+
             return (
               <div
                 key={question._id}
@@ -148,7 +147,8 @@ const StudentHistoryDetailPage = () => {
                       optionClassName += isCorrect
                         ? " student-chose-correct"
                         : " student-chose-incorrect";
-                    } else if (isSystemCorrectAnswer) {
+                    } 
+                    else if (isSystemCorrectAnswer) {
                       optionClassName += " system-is-correct";
                     }
 

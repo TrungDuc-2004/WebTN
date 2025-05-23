@@ -14,7 +14,7 @@ const ResultPage = () => {
   const percentage = Math.round((score / total) * 100);
   const elapsedTime = state?.elapsedTime || 0;
 
-  // Hiệu ứng confetti khi load trang
+  // Hiệu ứng pháoo hoa khi load trang
   React.useEffect(() => {
     confetti({
       particleCount: 150,

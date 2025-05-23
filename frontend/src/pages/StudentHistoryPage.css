@@ -1,6 +1,7 @@
 .history-list-page-container {
   padding: 80px 20px 40px;
   max-width: 1200px;
+  min-height: 100vh;
   margin: 0 auto;
   font-family: Arial, sans-serif;
   background-color: #f8fafc;
