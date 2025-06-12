@@ -1,2 +1,51 @@
+# Site settings
+# These are used to personalize your new site. If you look in Jekyll's
+# _config.yml, you'll see they are set by default.
+
+title: Your site title # Tiêu đề trang web của bạn
+email: your-email@example.com # Email liên hệ (tùy chọn)
+description: >- # this "description" will appear in your document's <meta> tag.
+  Write an awesome description for your new site here. You can edit this
+  line in _config.yml. It will appear in your document's <meta> tag.
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "" # the base hostname & protocol for your site, e.g. http://example.com
+github_username:  TrungDuc-2004 # Tên người dùng GitHub của bạn
+
+# Build settings
+markdown: kramdown
+theme: jekyll-theme-primer # Đảm bảo theme này trùng với theme bạn đang dùng
+plugins:
+  - jekyll-feed
+  - jekyll-github-metadata
+  - jekyll-seo-tag
+  - jekyll-coffeescript
+  - jekyll-commonmark-ghpages
+  - jekyll-gist
+  - jekyll-paginate
+  - jekyll-relative-links
+  - jekyll-optional-front-matter
+  - jekyll-readme-index
+  - jekyll-default-layout
+  - jekyll-titles-from-headings
+  - kramdown-parser-gfm
+
+# Exclude from processing.
+# The following items will not be processed, by default.
+# Any item listed under the `exclude:` key here will be automatically added to
+# the internal "default list".
+#
+# Excluded items can be re-enabled by adding them to the `include:` list of
+# the Jekyll config file.
+#
 exclude:
-  - backend/node_modules
+  - backend/node_modules # Dòng này rất quan trọng để bỏ qua thư mục node_modules
+  - .sass-cache/
+  - .jekyll-cache/
+  - gemfiles/
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
